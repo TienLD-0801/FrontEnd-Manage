@@ -1,0 +1,9 @@
+.header-table {
+  border: none !important;
+  border-bottom: 0.5px solid black !important;
+
+  &__title {
+    font-size: 18px;
+    font-weight: 600;
+  }
+}

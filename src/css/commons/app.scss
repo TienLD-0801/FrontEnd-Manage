@@ -1,0 +1,21 @@
+:root {
+  width: 100vw;
+  height: 100vh;
+  font-size: 14px;
+  overflow: hidden;
+
+  .MuiContainer-root {
+    padding: 0;
+    height: 100vh;
+    max-width: initial;
+  }
+
+  .MuiCircularProgress-root {
+    position: relative;
+  }
+
+  input[type='number']::-webkit-inner-spin-button,
+  input[type='number']::-webkit-outer-spin-button {
+    display: none;
+  }
+}

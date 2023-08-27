@@ -1,0 +1,138 @@
+$duration: 3s;
+
+.header-admin {
+  width: 100%;
+  position: relative;
+  padding: 16px 24px;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  gap: 16px;
+
+  &__logo {
+    margin-right: auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+
+    &__title {
+      font-style: italic;
+      font-family: 'Segoe UI';
+      font-size: 24px;
+      font-weight: bold;
+      animation: colorChange $duration infinite;
+    }
+
+    &__menu {
+      padding: 6px;
+      border-radius: 8px;
+      background-color: #ede7f6;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+
+      svg {
+        color: #5e35b1;
+      }
+
+      &:hover {
+        cursor: pointer;
+        background-color: #5e35b1;
+        svg {
+          color: #ffffff;
+        }
+      }
+    }
+
+    @keyframes colorChange {
+      0% {
+        color: #39f;
+      }
+      15% {
+        color: #8bc5d1;
+      }
+      30% {
+        color: #f8cb4a;
+      }
+      45% {
+        color: #95b850;
+      }
+      60% {
+        color: #944893;
+      }
+      75% {
+        color: #c71f00;
+      }
+      90% {
+        color: #bdb280;
+      }
+      100% {
+        color: #39f;
+      }
+    }
+  }
+
+  &__notification {
+    padding: 6px;
+    border-radius: 8px;
+    background-color: #ede7f6;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    svg {
+      color: #5e35b1;
+    }
+
+    &:hover {
+      cursor: pointer;
+      background-color: #5e35b1;
+      svg {
+        color: #ffffff;
+      }
+    }
+  }
+
+  &__language {
+    padding: 6px;
+    border-radius: 8px;
+    background-color: #e3f2fd;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    svg {
+      font-size: 25px;
+      color: #2788e5;
+    }
+
+    &:hover {
+      svg {
+        color: #ffffff;
+      }
+      cursor: pointer;
+      background-color: #2788e5;
+    }
+  }
+
+  &__toggle {
+    padding: 8px;
+    right: 20px;
+    border-radius: 10px;
+    background-color: rgb(33, 150, 243);
+    padding: 5px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    &__avatar,
+    &__setting {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      width: 40px;
+      height: 40px;
+    }
+  }
+}

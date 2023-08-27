@@ -1,0 +1,30 @@
+.informationWrapper {
+  height: 100%;
+  background-image: url('https://xmen.cdn.jaysoft.asia/wp-content/uploads/2019/10/Capture.jpg');
+  .informationTitle {
+    text-align: center;
+    color: white;
+    margin: 0;
+  }
+  .wrapperItem {
+    display: flex;
+    justify-content: space-around;
+  }
+  .wrapper {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 10px;
+    grid-auto-rows: minmax(50px, auto);
+    width: 70%;
+  }
+  .item {
+    display: flex;
+    background-color: grey;
+    align-items: center;
+  }
+  .itemTitle {
+    color: white;
+    font-size: 1.2rem;
+    padding: 5px;
+  }
+}

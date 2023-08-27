@@ -1,0 +1,47 @@
+.wrapper-introduce {
+  animation: wiggle 3s linear infinite;
+
+  :hover {
+    cursor: pointer;
+    background-color: #eeeeee;
+  }
+  .item_img {
+    height: 100%;
+    width: 100%;
+  }
+  .item_title {
+    color: red;
+    font-size: 1.2rem;
+    font-weight: 500;
+  }
+  .item_description {
+    font-size: 1rem;
+  }
+}
+
+/* Keyframes */
+@keyframes wiggle {
+  0%,
+  7% {
+    transform: rotateZ(0);
+  }
+  15% {
+    transform: rotateZ(-15deg);
+  }
+  20% {
+    transform: rotateZ(10deg);
+  }
+  25% {
+    transform: rotateZ(-10deg);
+  }
+  30% {
+    transform: rotateZ(6deg);
+  }
+  35% {
+    transform: rotateZ(-4deg);
+  }
+  40%,
+  100% {
+    transform: rotateZ(0);
+  }
+}

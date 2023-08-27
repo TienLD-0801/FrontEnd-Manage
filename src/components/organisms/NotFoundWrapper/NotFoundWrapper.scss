@@ -1,0 +1,59 @@
+.not-found {
+  overflow: hidden;
+  position: relative;
+  height: 100vh;
+
+  &__bg {
+    width: 100%;
+    height: 100%;
+    background-image: url('../../../../public/404.png');
+    background-size: cover;
+  }
+
+  &__content {
+    width: 100%;
+    position: absolute;
+    left: 50%;
+    top: 35%;
+    -webkit-transform: translate(-50%, -50%);
+    -ms-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
+    text-align: center;
+    color: #fff;
+    letter-spacing: 10px;
+
+    &__404 {
+      text-align: center;
+      color: white;
+      font-weight: 900;
+      font-size: 250px;
+    }
+
+    &__title {
+      padding: 0px 30% 0px 30%;
+      text-align: center;
+      color: white;
+      font-size: 30px;
+      font-weight: 600;
+      line-clamp: 1;
+    }
+
+    &__btn-home {
+      transition: 0.5s;
+      opacity: 0.5;
+      padding: 10px 0 10px 0;
+      height: 50%;
+      border-radius: 8px;
+      width: 10%;
+      font-weight: 600;
+      margin-top: 30px;
+      font-size: 18px;
+      color: rgb(16, 8, 1);
+
+      &:hover {
+        transition: 1s;
+        opacity: 1;
+      }
+    }
+  }
+}

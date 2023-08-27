@@ -1,0 +1,80 @@
+.wrapper_header {
+  display: flex;
+  width: 100%;
+  font-size: 1.4rem;
+  justify-content: center;
+  background-color: black;
+  color: white;
+  align-items: center;
+  @include small-screen() {
+    flex-direction: column;
+  }
+
+  .title_text {
+    padding: 13px;
+  }
+  .title_text:hover {
+    cursor: pointer;
+    background-color: #cccc;
+    color: aqua;
+  }
+  .fb_Image {
+    border-radius: 50%;
+    height: 100%;
+    width: 30px;
+    padding: 0 5px;
+  }
+  .wrapper_fb {
+    display: flex;
+    justify-content: center;
+  }
+  .fb_Image:hover {
+    cursor: pointer;
+    background-color: #ccc;
+  }
+  .item_logo {
+    border-radius: 3px;
+    width: 50px;
+    padding: 0 5px;
+    height: 100%;
+  }
+  .wrapper_login {
+    display: flex;
+    align-items: center;
+
+    .button {
+      margin: 0 5px 0 15px;
+    }
+    @include small-screen() {
+      flex-direction: column;
+      margin: 10px;
+      gap: 10px;
+    }
+  }
+}
+.dialog {
+  width: 500px;
+  margin-left: auto;
+  margin-right: auto;
+  left: 0;
+  right: 0;
+}
+
+.seperate{
+  @include small-screen() {
+    display: none;
+  }
+}
+
+// @media screen and (max-width: 1000px) {
+//   .wrapper_header {
+//     display: flex;
+//     flex-direction: column;
+//     width: 100%;
+//     font-size: 1.4rem;
+//     justify-content: center;
+//     background-color: black;
+//     color: white;
+//     align-items: center;
+//   }
+// }

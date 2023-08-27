@@ -1,0 +1,122 @@
+.dash-board {
+  display: flex;
+  flex-direction: column;
+
+  &__container {
+    margin-top: 30px;
+    display: flex;
+    flex-direction: row;
+
+    &__menu {
+      padding: 0 16px 0 16px;
+      overflow: hidden;
+      min-width: 75px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      gap: 10px;
+
+      &__focus {
+        border-radius: 8px;
+        background-color: #ede7f6;
+        width: 46px;
+        height: 46px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        cursor: pointer;
+      }
+
+      &__unfocus {
+        border-radius: 8px;
+        width: 46px;
+        height: 46px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        cursor: pointer;
+      }
+    }
+
+    &__content {
+      background-color: rgb(238, 242, 246);
+      height: auto;
+      margin-right: 20px;
+      width: 100%;
+      border-radius: 8px;
+    }
+  }
+
+  .admin-wrapper {
+    border-bottom-left-radius: 5px;
+    border-bottom-right-radius: 5px;
+    height: 100%;
+    width: 300px;
+    background-color: #ffffff;
+
+    &__title {
+      font-size: 25px;
+      padding-left: 20px;
+      font-weight: 500;
+    }
+
+    &__content {
+      margin-top: 20px;
+      padding: 0 16px 0 16px;
+
+      &__item {
+        display: flex;
+        align-items: center;
+        gap: 20px;
+        font-size: 15px;
+        padding: 15px;
+
+        &__text {
+          display: flex;
+          flex-direction: column;
+          gap: 8px;
+
+          &__title {
+            color: violet;
+            font-size: 14px;
+            font-weight: 600;
+            white-space: nowrap;
+          }
+
+          &__disable {
+            font-size: 14px;
+            color: gray;
+            font-weight: 500;
+            white-space: nowrap;
+          }
+
+          &__focus {
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            gap: 20px;
+            padding: 10px;
+            background-color: rgb(237, 231, 246);
+          }
+
+          &__unfocus {
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            gap: 20px;
+            font-size: 15px;
+            padding: 10px;
+
+            &:hover {
+              cursor: pointer;
+              border-radius: 10px;
+              background-color: rgb(237, 231, 246);
+              opacity: 0.8;
+            }
+          }
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,28 @@
+$small-screen: 576px;
+$medium-screen: 768px;
+$large-screen: 992px;
+$extra-large-screen: 1200px;
+
+@mixin small-screen{
+  @media screen and (max-width: $small-screen) {
+    @content;
+  }
+}
+
+@mixin medium-screen () {
+  @media screen and (min-width: #{$small-screen + 1px}) and (max-width: $medium-screen) {
+    @content;
+  }
+}
+
+@mixin large-screen () {
+  @media screen and (min-width: #{$medium-screen + 1px}) and (max-width: $large-screen) {
+    @content;
+  }
+}
+
+@mixin extra-large-screen (){
+  @media screen and (min-width: #{$large-screen + 1px}) and (max-width: $extra-large-screen) {
+    @content;
+  }
+}

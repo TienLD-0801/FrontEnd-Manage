@@ -1,0 +1,56 @@
+.login-box {
+  overflow: hidden;
+  width: 100%;
+  justify-content: center;
+  display: flex;
+  height: 100%;
+  align-items: center;
+  background-image: url('../../../../../public/background_barber.png');
+  background-size: cover;
+  background-position: center;
+
+  &__form {
+    width: 450px;
+    padding: 40px;
+    opacity: 0.6;
+    background: #faefa0;
+    border-radius: 10px;
+    box-shadow: 10px 10px 10px rgb(64, 63, 63);
+    transition: 1s;
+
+    &__title {
+      text-align: center;
+      font-weight: 600;
+      font-size: 30px;
+      margin: 0;
+    }
+
+    &__container {
+      margin: 20px 0 20px 0;
+    }
+
+    &__button {
+      width: 100%;
+      justify-content: center;
+      display: flex;
+      align-items: center;
+      background: rgb(249, 206, 74);
+      opacity: 0.4;
+      cursor: pointer;
+      border-radius: 6px;
+      border: none;
+      padding: 15px 0 15px 0;
+      transition: 1s;
+
+      &:hover {
+        transition: 1s;
+        opacity: 1;
+      }
+    }
+
+    &:hover {
+      transition: 1s;
+      opacity: 1;
+    }
+  }
+}
