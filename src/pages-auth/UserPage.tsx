@@ -9,6 +9,7 @@ import {
   SelectChangeEvent,
   TextField,
 } from '@mui/material';
+import { MobileDatePicker } from '@mui/x-date-pickers';
 import DashboardWrapper from '@/components/admin/organisms/DashboardWrapper/DashboardWrapper';
 import UsersWrapper from '@/components/admin/organisms/UsersWrapper/UsersWrapper';
 import { useContext, useEffect, useState } from 'react';
@@ -37,6 +38,8 @@ const UserPage = () => {
       name: '',
       email: '',
       password: '',
+      date_of_birth: '',
+      card_id: '',
       phone: '',
     },
     validationSchema: validationCreateUserSchema,
@@ -239,7 +242,7 @@ const UserPage = () => {
       >
         <form>
           {DATA_DIALOG_CREATE_USER.map((user) => {
-            return (
+            return !user.isPicker ? (
               <TextField
                 error={
                   validationCreateUser.touched[user.value] &&
@@ -274,6 +277,26 @@ const UserPage = () => {
                 fullWidth
                 autoComplete={user.autoComplete}
                 {...validationCreateUser.getFieldProps(user.value)}
+              />
+            ) : (
+              <MobileDatePicker
+                format="DD/MM/YYYY"
+                sx={{ pb: 1 }}
+                slotProps={{
+                  textField: {
+                    fullWidth: true,
+                    variant: 'outlined',
+                    error:
+                      validationCreateUser.touched[user.value] &&
+                      !!validationCreateUser.errors[user.value],
+                    helperText:
+                      validationCreateUser.touched[user.value] &&
+                      validationCreateUser.errors[user.value],
+                  },
+                }}
+                onChange={(date) => {
+                  validationCreateUser.setFieldValue(user.value, date);
+                }}
               />
             );
           })}

@@ -324,11 +324,12 @@ export const DATA_DIALOG_USER: DataDialogUserType[] = [
 
 export type DataDialogCreateUserType = {
   id: string;
-  type: 'text' | 'email' | 'password' | 'number';
-  label: string;
-  value: 'name' | 'email' | 'password' | 'phone';
+  type?: 'text' | 'email' | 'password' | 'number' | 'date_of_birth';
+  label?: string;
+  value: 'name' | 'email' | 'password' | 'date_of_birth' | 'card_id' | 'phone';
   margin?: 'none' | 'dense' | 'normal';
   autoComplete?: string;
+  isPicker?: boolean;
 };
 
 export const DATA_DIALOG_CREATE_USER: DataDialogCreateUserType[] = [
@@ -358,7 +359,23 @@ export const DATA_DIALOG_CREATE_USER: DataDialogCreateUserType[] = [
   },
   {
     id: '4',
-    type: 'number',
+    value: 'date_of_birth',
+    type: 'date_of_birth',
+    margin: 'dense',
+    autoComplete: undefined,
+    isPicker: true,
+  },
+  {
+    id: '5',
+    type: 'text',
+    label: 'CMND/CCCD',
+    value: 'card_id',
+    margin: 'dense',
+    autoComplete: undefined,
+  },
+  {
+    id: '6',
+    type: 'text',
     label: 'Phone',
     value: 'phone',
     margin: 'dense',

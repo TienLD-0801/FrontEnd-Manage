@@ -14,6 +14,8 @@ import AlertDialog from '@/components/atoms/AlertDialog/AlertDialog';
 import theme from '@/ts/theme';
 import { LoadingProvider } from '@/context/LoadingContext';
 import Loading from '@/components/atoms/Loading/Loading';
+import { LocalizationProvider } from '@mui/x-date-pickers';
+import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
 
 // Mount React App
 const root = createRoot(document.getElementById('root')!);
@@ -23,7 +25,9 @@ root.render(
     <AlertDialogProvider>
       <ThemeProvider theme={theme}>
         <CssBaseline />
-        <MyApp />
+        <LocalizationProvider dateAdapter={AdapterDayjs}>
+          <MyApp />
+        </LocalizationProvider>
       </ThemeProvider>
       <AlertDialog />
       <Loading />
