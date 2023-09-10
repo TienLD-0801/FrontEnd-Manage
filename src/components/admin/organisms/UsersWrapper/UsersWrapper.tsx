@@ -11,7 +11,7 @@ import './UsersWrapper.scss';
 import React from 'react';
 import HeaderTable from '@/components/admin/atoms/HeaderTable/HeaderTable';
 import { COL_USERS } from '@/type/TableType/table_type';
-import { UserType } from '@/api_type/Login/login';
+import { UserType } from '@/api_type/login';
 import { DeleteForeverOutlined, EditOutlined } from '@mui/icons-material';
 import Button from '@/components/atoms/Button/Button';
 import { format } from 'date-fns';

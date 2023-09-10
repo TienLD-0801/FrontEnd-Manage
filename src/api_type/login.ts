@@ -2,7 +2,6 @@ export type ParamsLogin = {
   email: string;
   password: string;
 };
-
 export type UserType = {
   id: string;
   name: string;
@@ -10,7 +9,7 @@ export type UserType = {
   password: string;
   date_of_birth: string;
   card_id: string;
-  phone: number;
+  phone: string;
   role: number;
   action?: undefined;
 };
