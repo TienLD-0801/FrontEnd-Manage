@@ -25,12 +25,12 @@ export const ROUTE_PATH = {
 
 // Data header
 export const DATA_HEADER = [
-  { id: 1, name: 'TRANG CHỦ', routerName: '/' },
-  { id: 2, name: 'GIỚI THIỆU', routerName: '/introduce' },
-  { id: 3, name: 'BẢNG GIÁ DỊCH VỤ', routerName: '/listprice' },
-  { id: 4, name: 'ĐÀO TẠO', routerName: '/training' },
+  { id: 1, name: 'HOME', routerName: '/' },
+  { id: 2, name: 'ABOUT', routerName: '/introduce' },
+  { id: 3, name: 'PRICE', routerName: '/listprice' },
+  { id: 4, name: 'TRAINING', routerName: '/training' },
   { id: 5, name: 'BLOG', routerName: '' },
-  { id: 6, name: 'LIÊN HỆ', routerName: '' },
+  { id: 6, name: 'CONTACT', routerName: '' },
 ];
 
 //data author
@@ -304,22 +304,57 @@ export const DATA_DASHBOARD: DataDasBoardType[] = [
   },
 ];
 
-export type DataDialogUserType = {
+export type DataDialogEditUserType = {
   id: string;
-  type: 'text' | 'email' | 'number';
-  label: 'Name' | 'Email' | 'Phone';
-  value: 'name' | 'email' | 'phone';
+  type: 'text' | 'email' | 'number' | 'date_of_birth';
+  label?: string;
+  value: 'name' | 'email' | 'card_id' | 'phone' | 'date_of_birth';
   margin?: 'none' | 'dense' | 'normal';
-  onChange?: (
-    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>,
-    value: 'name' | 'email' | 'role',
-  ) => void;
+  autoComplete?: string | undefined;
+  isPicker?: boolean;
 };
 
-export const DATA_DIALOG_USER: DataDialogUserType[] = [
-  { id: '1', type: 'text', label: 'Name', value: 'name', margin: 'dense' },
-  { id: '2', type: 'email', label: 'Email', value: 'email', margin: 'dense' },
-  { id: '3', type: 'number', label: 'Phone', value: 'phone', margin: 'normal' },
+export const DATA_DIALOG_EDIT_USER: DataDialogEditUserType[] = [
+  {
+    id: '1',
+    type: 'text',
+    label: 'Name',
+    value: 'name',
+    margin: 'dense',
+    autoComplete: undefined,
+  },
+  {
+    id: '2',
+    type: 'email',
+    label: 'Email',
+    value: 'email',
+    margin: 'dense',
+    autoComplete: undefined,
+  },
+  {
+    id: '3',
+    value: 'date_of_birth',
+    type: 'date_of_birth',
+    margin: 'dense',
+    autoComplete: undefined,
+    isPicker: true,
+  },
+  {
+    id: '4',
+    type: 'text',
+    label: 'CMND/CCCD',
+    value: 'card_id',
+    margin: 'dense',
+    autoComplete: undefined,
+  },
+  {
+    id: '5',
+    type: 'text',
+    label: 'Phone',
+    value: 'phone',
+    margin: 'dense',
+    autoComplete: undefined,
+  },
 ];
 
 export type DataDialogCreateUserType = {

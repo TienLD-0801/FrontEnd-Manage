@@ -1,6 +1,6 @@
 import axios, { AxiosError, AxiosInstance } from 'axios';
 import { store } from '@/store/index';
-import { LoginResponse, ParamsLogin, UserAll } from '@/api_type/Login/login';
+import { LoginResponse, ParamsLogin, UserAll } from '@/api_type/login';
 import _ from 'lodash';
 
 /** Setting timeout of axios */
