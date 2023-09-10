@@ -14,6 +14,8 @@ import { COL_USERS } from '@/type/TableType/table_type';
 import { UserType } from '@/api_type/Login/login';
 import { DeleteForeverOutlined, EditOutlined } from '@mui/icons-material';
 import Button from '@/components/atoms/Button/Button';
+import { format } from 'date-fns';
+import { DATE_FORMAT, getNewDate } from '@/constants/date';
 
 interface UsersWrapperProps {
   dataUsers: UserType[];
@@ -77,6 +79,10 @@ const UsersWrapper = ({
                     >
                       {COL_USERS.map((column) => {
                         const value = user[column.id!];
+                        const dateOfBirth = format(
+                          getNewDate(user.date_of_birth),
+                          DATE_FORMAT,
+                        );
 
                         return (
                           <TableCell
@@ -103,8 +109,10 @@ const UsersWrapper = ({
                               index + 1
                             ) : column.id === 'role' ? (
                               <div className="user-wrapper__action__label">
-                                {user.role === 0 ? 'Admin' : 'Staff'}{' '}
+                                {user.role === 0 ? 'Admin' : 'Staff'}
                               </div>
+                            ) : column.id === 'date_of_birth' ? (
+                              dateOfBirth
                             ) : (
                               value
                             )}

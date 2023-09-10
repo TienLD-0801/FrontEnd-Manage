@@ -8,7 +8,8 @@ export type UserType = {
   name: string;
   email: string;
   password: string;
-  age: number;
+  date_of_birth: string;
+  card_id: string;
   phone: number;
   role: number;
   action?: undefined;
