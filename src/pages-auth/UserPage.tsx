@@ -22,10 +22,12 @@ import dayjs from 'dayjs';
 import DatePicker from '@/components/admin/atoms/DatePicker/DatePicker';
 import { FORMAT_INPUT } from '@/constants/date';
 import CustomTextField from '@/components/admin/atoms/CustomTextField/CustomTextField';
+import { useTranslation } from 'react-i18next';
 
 const UserPage = () => {
   const preloader = useContext(LoadingContext);
   const alertDialog = useContext(AlertDialogContext);
+  const { t } = useTranslation();
   const [isOpenEdit, setIsOpenEdit] = useState<boolean>(false);
   const [isOpenCreate, setIsOpenCreate] = useState<boolean>(false);
   const [isShowPassword, setIsShowPassword] = useState<boolean>(false);
@@ -176,7 +178,7 @@ const UserPage = () => {
       </DashboardWrapper>
       <DialogForm
         onClickSave={() => validationCreateUser.handleSubmit()}
-        title={'Create User'}
+        title={t('form.create.user.title')}
         open={isOpenCreate}
         onClose={() => setIsOpenCreate(false)}
       >
@@ -243,7 +245,7 @@ const UserPage = () => {
       </DialogForm>
       <DialogForm
         onClickSave={() => validationEditUser.handleSubmit()}
-        title={'Edit User'}
+        title={t('form.edit.user.title')}
         open={isOpenEdit}
         onClose={() => setIsOpenEdit(false)}
       >
@@ -308,10 +310,24 @@ const UserPage = () => {
       </DialogForm>
       <DialogForm
         open={isOpenDelete}
-        title={'Delete'}
+        title={t('form.delete.user.title')}
         onClose={() => setIsOpenDelete(false)}
         onClickSave={handleAgreeDelete}
-      >{`Do you want delete user: ${dataDelete.name} ?`}</DialogForm>
+      >
+        <div
+          style={{
+            display: 'flex',
+            justifyContent: 'center',
+            alignItems: 'center',
+          }}
+        >
+          <div>Do you want delete user&nbsp;</div>
+          <div style={{ fontSize: 16, fontWeight: 600 }}>
+            "{dataDelete.name}"&nbsp;
+          </div>
+          <div>?</div>
+        </div>
+      </DialogForm>
     </Container>
   );
 };

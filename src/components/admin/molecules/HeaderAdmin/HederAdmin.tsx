@@ -1,22 +1,24 @@
 import {
   SettingsOutlined,
-  TranslateOutlined,
+  TranslateTwoTone,
   NotificationsNoneOutlined,
   Menu,
 } from '@mui/icons-material';
 import './HeaderAdmin.scss';
 
-interface HederAdminProps {
+interface HeaderAdminProps {
   onClickProfile: (event: React.MouseEvent<HTMLElement>) => void;
   open: boolean;
   onClickScale: () => void;
+  onChangeLanguage: (event: React.MouseEvent<HTMLElement>) => void;
 }
 
-const HederAdmin = ({
+const HeaderAdmin = ({
   onClickProfile,
   open,
   onClickScale,
-}: HederAdminProps) => {
+  onChangeLanguage,
+}: HeaderAdminProps) => {
   return (
     <div className="header-admin">
       <div className="header-admin__logo">
@@ -26,8 +28,8 @@ const HederAdmin = ({
           <Menu sx={{ fontSize: 25 }} />
         </div>
       </div>
-      <div className="header-admin__language">
-        <TranslateOutlined
+      <div className="header-admin__language" onClick={onChangeLanguage}>
+        <TranslateTwoTone
           sx={{
             fontSize: 25,
           }}
@@ -61,4 +63,4 @@ const HederAdmin = ({
   );
 };
 
-export default HederAdmin;
+export default HeaderAdmin;

@@ -272,7 +272,7 @@ export const DATA_INPUT_REGISTER: DataInputRegisterType[] = [
 
 export interface DataDasBoardType {
   id: number;
-  text?: string;
+  text: string;
   router: string;
   icon: SvgIconComponent;
 }
@@ -280,25 +280,25 @@ export interface DataDasBoardType {
 export const DATA_DASHBOARD: DataDasBoardType[] = [
   {
     id: 1,
-    text: 'DEFAULT',
+    text: 'dashboard.children.default',
     router: '/admin-dashboard',
     icon: Dashboard,
   },
   {
     id: 2,
-    text: 'MANAGER PRODUCT',
+    text: 'dashboard.children.product',
     router: '/admin-product',
     icon: ProductionQuantityLimits,
   },
   {
     id: 3,
-    text: 'SCHEDULE',
+    text: 'dashboard.children.schedule',
     router: '/admin-schedule',
     icon: CalendarMonth,
   },
   {
     id: 4,
-    text: 'MANAGER USER',
+    text: 'dashboard.children.user',
     router: '/admin-user',
     icon: ManageAccounts,
   },
@@ -446,4 +446,17 @@ export const TEXT_FIELD_LOGIN: TextFieldLoginType[] = [
     margin: 'dense',
     autoComplete: 'off',
   },
+];
+
+// data menu language
+
+export type MENU_LANGUAGE_TYPE = {
+  id: string;
+  name: string;
+  value: string;
+};
+
+export const MENU_LANGUAGE: MENU_LANGUAGE_TYPE[] = [
+  { id: '1', name: 'English (UK)', value: 'UK' },
+  { id: '2', name: 'Vietnamese (VN)', value: 'VN' },
 ];
