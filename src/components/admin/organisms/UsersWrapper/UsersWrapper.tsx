@@ -7,7 +7,6 @@ import {
   TablePagination,
   TableRow,
 } from '@mui/material';
-import './UsersWrapper.scss';
 import React from 'react';
 import HeaderTable from '@/components/admin/atoms/HeaderTable/HeaderTable';
 import { COL_USERS } from '@/type/TableType/table_type';
@@ -16,6 +15,8 @@ import { DeleteForeverOutlined, EditOutlined } from '@mui/icons-material';
 import Button from '@/components/atoms/Button/Button';
 import { format } from 'date-fns';
 import { DATE_FORMAT, getNewDate } from '@/constants/date';
+import { useTranslation } from 'react-i18next';
+import './UsersWrapper.scss';
 
 interface UsersWrapperProps {
   dataUsers: UserType[];
@@ -32,7 +33,7 @@ const UsersWrapper = ({
 }: UsersWrapperProps) => {
   const [page, setPage] = React.useState(0);
   const [rowsPerPage, setRowsPerPage] = React.useState(10);
-
+  const { t } = useTranslation();
   const handleChangePage = (_: unknown, newPage: number) => {
     setPage(newPage);
   };
@@ -47,12 +48,14 @@ const UsersWrapper = ({
   return (
     <div className="user-wrapper">
       <div className="user-wrapper__container">
-        <div className="user-wrapper__container__title">User Table</div>
+        <div className="user-wrapper__container__title">
+          {t('table.user.title')}
+        </div>
         <Button
           classes="user-wrapper__container__button"
           onClick={onClickCreate}
         >
-          Create User
+          {t('form.create.user.title')}
         </Button>
       </div>
       <Paper
@@ -65,7 +68,7 @@ const UsersWrapper = ({
       >
         <TableContainer sx={{ maxHeight: 480 }}>
           <Table stickyHeader sx={{ m: 0 }}>
-            <HeaderTable columns={COL_USERS} />
+            <HeaderTable columns={COL_USERS} i18nIsDynamicList={true} />
             <TableBody>
               {dataUsers
                 .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)

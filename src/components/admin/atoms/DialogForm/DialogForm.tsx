@@ -6,6 +6,7 @@ import {
   Button,
 } from '@mui/material';
 import React from 'react';
+import { useTranslation } from 'react-i18next';
 
 interface DialogUserProps {
   title: string;
@@ -22,6 +23,7 @@ const DialogForm = ({
   onClose,
   onClickSave,
 }: DialogUserProps) => {
+  const { t } = useTranslation();
   return (
     <Dialog open={open}>
       <DialogTitle textAlign={'center'} fontSize={30} fontWeight={600}>
@@ -29,8 +31,8 @@ const DialogForm = ({
       </DialogTitle>
       <DialogContent>{children}</DialogContent>
       <DialogActions>
-        <Button onClick={onClose}>Cancel</Button>
-        <Button onClick={onClickSave}>Save</Button>
+        <Button onClick={onClose}>{t('form.button.cancel')}</Button>
+        <Button onClick={onClickSave}>{t('form.button.save')}</Button>
       </DialogActions>
     </Dialog>
   );

@@ -4,19 +4,26 @@ import { updateUser } from '@/store/slices/UserSlice';
 import { goTo } from '@/ts/router';
 import { DATA_DASHBOARD, ROUTE_PATH } from '@/constants/constant';
 import { useLocation } from 'react-router-dom';
-import HederAdmin from '@/components/admin/molecules/HeaderAdmin/HederAdmin';
+import HeaderAdmin from '@/components/admin/molecules/HeaderAdmin/HederAdmin';
 import ProfileDropdown from '@/components/admin/atoms/ProfileDropdown/ProfileDropdown';
 import { RootStatesType } from '@/store';
-import './DashboardWrapper.scss';
 import { updateScale } from '@/store/slices/ScaleMenuSlice';
+import LanguageDropdown from '../../atoms/LanguageDropdown/LanguageDropdown';
+import { updateLanguage } from '@/store/slices/LanguageSlice';
+import './DashboardWrapper.scss';
+import { useTranslation } from 'react-i18next';
 
 interface DashboardWrapperProps {
   children: React.ReactNode;
 }
 
 const DashboardWrapper = (props: DashboardWrapperProps) => {
+  const { t } = useTranslation();
   const userInfo = useSelector((state: RootStatesType) => state.user);
   const scale = useSelector((state: RootStatesType) => state.scale.value);
+  const activeLanguage = useSelector(
+    (state: RootStatesType) => state.language.value,
+  );
   const dispatch = useDispatch();
   // hook location
   const location = useLocation();
@@ -50,16 +57,32 @@ const DashboardWrapper = (props: DashboardWrapperProps) => {
     setAnchorEl(null);
   };
 
+  // handle open setting language
+  const [languageEl, setLanguageEl] = useState<null | HTMLElement>(null);
+  const openLanguageMenu = Boolean(languageEl);
+  const onChangeLanguage = (event: React.MouseEvent<HTMLElement>) => {
+    setLanguageEl(event.currentTarget);
+  };
+  const handleCloseLanguage = () => {
+    setLanguageEl(null);
+  };
+
   const onClickScale = () => {
     dispatch(updateScale());
   };
 
+  const onChooseLanguage = (value: string) => {
+    dispatch(updateLanguage({ value: value }));
+    setLanguageEl(null);
+  };
+
   return (
     <div className="dash-board" style={{ display: 'flex', height: '100%' }}>
-      <HederAdmin
+      <HeaderAdmin
         onClickProfile={onClickProfile}
         open={open}
         onClickScale={onClickScale}
+        onChangeLanguage={onChangeLanguage}
       />
       <div className="dash-board__container">
         {scale ? (
@@ -88,35 +111,37 @@ const DashboardWrapper = (props: DashboardWrapperProps) => {
           </div>
         ) : (
           <div className="admin-wrapper">
-            <div className="admin-wrapper__title">Dashboard</div>
+            <div className="admin-wrapper__title">{t('dashboard.title')}</div>
             <div className="admin-wrapper__content">
               <div className="admin-wrapper__content__item__text">
-                {DATA_DASHBOARD.map((e) => {
+                {DATA_DASHBOARD.map((dashboard) => {
                   return (
                     <div
-                      key={e.id}
+                      key={dashboard.id}
                       className={
-                        location.pathname === e.router
+                        location.pathname === dashboard.router
                           ? 'admin-wrapper__content__item__text__focus'
                           : 'admin-wrapper__content__item__text__unfocus'
                       }
-                      onClick={() => handleNavigate(e.router)}
+                      onClick={() => handleNavigate(dashboard.router)}
                     >
-                      <e.icon
+                      <dashboard.icon
                         style={{
                           color:
-                            location.pathname === e.router ? 'violet' : 'black',
+                            location.pathname === dashboard.router
+                              ? 'violet'
+                              : 'black',
                         }}
                         fontSize="medium"
                       />
                       <div
                         className={
-                          location.pathname === e.router
+                          location.pathname === dashboard.router
                             ? 'admin-wrapper__content__item__text__title'
                             : 'admin-wrapper__content__item__text__disable'
                         }
                       >
-                        {scale ? '' : e.text}
+                        {scale ? '' : t(dashboard.text)}
                       </div>
                     </div>
                   );
@@ -134,6 +159,13 @@ const DashboardWrapper = (props: DashboardWrapperProps) => {
         open={open}
         handleClose={handleClose}
         onClickLogout={onClickLogout}
+      />
+      <LanguageDropdown
+        active={activeLanguage}
+        anchorEl={languageEl}
+        open={openLanguageMenu}
+        handleClose={handleCloseLanguage}
+        onChooseLanguage={(value) => onChooseLanguage(value)}
       />
     </div>
   );
