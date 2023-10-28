@@ -8,12 +8,13 @@ import {
 import React from 'react';
 import { useTranslation } from 'react-i18next';
 
-interface DialogUserProps {
+interface DialogProps {
   title: string;
   open: boolean;
   onClose: () => void;
   onClickSave: () => void;
   children: React.ReactNode;
+  fullWidth?: boolean;
 }
 
 const DialogForm = ({
@@ -22,17 +23,18 @@ const DialogForm = ({
   children,
   onClose,
   onClickSave,
-}: DialogUserProps) => {
+  fullWidth = true,
+}: DialogProps) => {
   const { t } = useTranslation();
   return (
-    <Dialog open={open}>
+    <Dialog open={open} fullWidth={fullWidth}>
       <DialogTitle textAlign={'center'} fontSize={30} fontWeight={600}>
         {title}
       </DialogTitle>
       <DialogContent>{children}</DialogContent>
       <DialogActions>
-        <Button onClick={onClose}>{t('form.button.cancel')}</Button>
-        <Button onClick={onClickSave}>{t('form.button.save')}</Button>
+        <Button onClick={onClose}>{t('dialog.button.cancel')}</Button>
+        <Button onClick={onClickSave}>{t('dialog.button.save')}</Button>
       </DialogActions>
     </Dialog>
   );

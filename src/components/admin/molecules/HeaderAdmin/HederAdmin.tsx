@@ -1,6 +1,5 @@
 import {
   SettingsOutlined,
-  TranslateTwoTone,
   NotificationsNoneOutlined,
   Menu,
 } from '@mui/icons-material';
@@ -11,6 +10,7 @@ interface HeaderAdminProps {
   open: boolean;
   onClickScale: () => void;
   onChangeLanguage: (event: React.MouseEvent<HTMLElement>) => void;
+  languageName: string;
 }
 
 const HeaderAdmin = ({
@@ -18,6 +18,7 @@ const HeaderAdmin = ({
   open,
   onClickScale,
   onChangeLanguage,
+  languageName,
 }: HeaderAdminProps) => {
   return (
     <div className="header-admin">
@@ -29,11 +30,7 @@ const HeaderAdmin = ({
         </div>
       </div>
       <div className="header-admin__language" onClick={onChangeLanguage}>
-        <TranslateTwoTone
-          sx={{
-            fontSize: 25,
-          }}
-        />
+        <div className="header-admin__language__name">{languageName}</div>
       </div>
       <div className="header-admin__notification">
         <NotificationsNoneOutlined

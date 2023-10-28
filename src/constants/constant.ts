@@ -4,6 +4,7 @@ import {
   ProductionQuantityLimits,
   Dashboard,
   SvgIconComponent,
+  CategoryOutlined,
 } from '@mui/icons-material';
 
 // Router
@@ -18,6 +19,7 @@ export const ROUTE_PATH = {
   // Admin
   login: '/admin-login',
   dashboard: '/admin-dashboard',
+  category: '/admin-category',
   product: '/admin-product',
   schedule: '/admin-schedule',
   user: '/admin-user',
@@ -285,19 +287,25 @@ export const DATA_DASHBOARD: DataDasBoardType[] = [
     icon: Dashboard,
   },
   {
-    id: 2,
+    id: 3,
+    text: 'dashboard.children.category',
+    router: '/admin-category',
+    icon: CategoryOutlined,
+  },
+  {
+    id: 4,
     text: 'dashboard.children.product',
     router: '/admin-product',
     icon: ProductionQuantityLimits,
   },
   {
-    id: 3,
+    id: 5,
     text: 'dashboard.children.schedule',
     router: '/admin-schedule',
     icon: CalendarMonth,
   },
   {
-    id: 4,
+    id: 6,
     text: 'dashboard.children.user',
     router: '/admin-user',
     icon: ManageAccounts,
@@ -371,7 +379,7 @@ export const DATA_DIALOG_CREATE_USER: DataDialogCreateUserType[] = [
   {
     id: '1',
     type: 'text',
-    label: 'Name',
+    label: 'dialog.user.create.name',
     value: 'name',
     margin: 'dense',
     autoComplete: undefined,
@@ -379,7 +387,7 @@ export const DATA_DIALOG_CREATE_USER: DataDialogCreateUserType[] = [
   {
     id: '2',
     type: 'email',
-    label: 'Email',
+    label: 'dialog.user.create.email',
     value: 'email',
     margin: 'dense',
     autoComplete: undefined,
@@ -387,7 +395,7 @@ export const DATA_DIALOG_CREATE_USER: DataDialogCreateUserType[] = [
   {
     id: '3',
     type: 'password',
-    label: 'Password',
+    label: 'dialog.user.create.password',
     value: 'password',
     margin: 'dense',
     autoComplete: 'off',
@@ -403,7 +411,7 @@ export const DATA_DIALOG_CREATE_USER: DataDialogCreateUserType[] = [
   {
     id: '5',
     type: 'text',
-    label: 'CMND/CCCD',
+    label: 'dialog.user.create.cardNumber',
     value: 'card_id',
     margin: 'dense',
     autoComplete: undefined,
@@ -411,7 +419,7 @@ export const DATA_DIALOG_CREATE_USER: DataDialogCreateUserType[] = [
   {
     id: '6',
     type: 'text',
-    label: 'Phone',
+    label: 'dialog.user.create.phone',
     value: 'phone',
     margin: 'dense',
     autoComplete: undefined,
@@ -459,4 +467,6 @@ export type MENU_LANGUAGE_TYPE = {
 export const MENU_LANGUAGE: MENU_LANGUAGE_TYPE[] = [
   { id: '1', name: 'English (UK)', value: 'UK' },
   { id: '2', name: 'Vietnamese (VN)', value: 'VN' },
+  { id: '3', name: 'Japanese (JA)', value: 'JA' },
+  { id: '4', name: 'Chinese (CH)', value: 'CH' },
 ];

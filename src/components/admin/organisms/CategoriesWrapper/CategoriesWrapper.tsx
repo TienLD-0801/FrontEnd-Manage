@@ -1,6 +1,8 @@
-import { useTranslation } from 'react-i18next';
-import './ProductWrapper.scss';
+import React from 'react';
 import Button from '@/components/atoms/Button/Button';
+import './CategoriesWrapper.scss';
+import { useTranslation } from 'react-i18next';
+import { CategoriesType } from '@/api-type/category';
 import { EditOutlined, DeleteForeverOutlined } from '@mui/icons-material';
 import {
   Paper,
@@ -12,23 +14,20 @@ import {
   TablePagination,
 } from '@mui/material';
 import HeaderTable from '../../atoms/HeaderTable/HeaderTable';
-import { ProductType } from '@/api-type/product';
 import { useState } from 'react';
-import { COL_PRODUCT } from '@/type/TableType/table_product';
+import { COL_CATEGORIES } from '@/type/TableType/table_category';
 
-interface ProductWrapperProps {
-  dataProduct: ProductType[];
-  onClickCreateProduct: () => void;
-  onClickEditProduct: (product: ProductType) => void;
-  onClickDelete: (product: ProductType) => void;
+interface CategoriesWrapperProps {
+  dataCategory: CategoriesType[];
+  onClickDelete: (category: CategoriesType) => void;
+  onClickCreate: () => void;
 }
 
-const ProductWrapper = ({
-  dataProduct,
-  onClickCreateProduct,
-  onClickEditProduct,
+const CategoriesWrapper = ({
+  dataCategory,
   onClickDelete,
-}: ProductWrapperProps) => {
+  onClickCreate,
+}: CategoriesWrapperProps) => {
   const { t } = useTranslation();
   const [page, setPage] = useState<number>(0);
   const [rowsPerPage, setRowsPerPage] = useState<number>(10);
@@ -44,16 +43,16 @@ const ProductWrapper = ({
   };
 
   return (
-    <div className="product-wrapper">
-      <div className="product-wrapper__container">
-        <div className="product-wrapper__container__title">
-          {t('table.product.title')}
+    <div className="category-wrapper">
+      <div className="category-wrapper__container">
+        <div className="category-wrapper__container__title">
+          {t('table.category.title')}
         </div>
         <Button
-          classes="user-wrapper__container__button"
-          onClick={onClickCreateProduct}
+          classes="category-wrapper__container__button"
+          onClick={onClickCreate}
         >
-          {t('table.product.buttonCreate')}
+          {t('table.category.buttonCreate')}
         </Button>
       </div>
       <Paper
@@ -66,21 +65,20 @@ const ProductWrapper = ({
       >
         <TableContainer sx={{ maxHeight: 480 }}>
           <Table stickyHeader sx={{ m: 0 }}>
-            <HeaderTable columns={COL_PRODUCT} i18nIsDynamicList={true} />
+            <HeaderTable columns={COL_CATEGORIES} i18nIsDynamicList={true} />
             <TableBody>
-              {dataProduct
+              {dataCategory
                 .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
-                .map((product, index) => {
+                .map((category, index) => {
                   return (
                     <TableRow
                       hover
                       role="checkbox"
                       tabIndex={-1}
-                      key={product.id}
+                      key={category.id.toString()}
                     >
-                      {COL_PRODUCT.map((column) => {
-                        const value = product[column.id!];
-
+                      {COL_CATEGORIES.map((column) => {
+                        const value = category[column.id!];
                         return (
                           <TableCell
                             key={column.id}
@@ -88,27 +86,20 @@ const ProductWrapper = ({
                             className="table"
                           >
                             {column.id === 'action' ? (
-                              <div className="user-wrapper__action">
+                              <div className="category-wrapper__action">
                                 <div
-                                  className="user-wrapper__action__edit"
-                                  onClick={() => onClickEditProduct(product)}
+                                  className="category-wrapper__action__edit"
+                                  // onClick={() => onClickEdit(user)}
                                 >
                                   <EditOutlined />
                                 </div>
                                 <div
-                                  className="user-wrapper__action__delete"
-                                  onClick={() => onClickDelete(product)}
+                                  className="category-wrapper__action__delete"
+                                  onClick={() => onClickDelete(category)}
                                 >
                                   <DeleteForeverOutlined />
                                 </div>
                               </div>
-                            ) : column.id === 'urlImg' ? (
-                              <img
-                                alt=""
-                                width={150}
-                                height={100}
-                                src={`${product.urlImg}`}
-                              />
                             ) : column.id === 'id' ? (
                               index + 1
                             ) : (
@@ -127,7 +118,7 @@ const ProductWrapper = ({
           rowsPerPageOptions={[10, 25, 100]}
           component="div"
           labelRowsPerPage={t('table.rowPerPage')}
-          count={dataProduct.length}
+          count={dataCategory.length}
           rowsPerPage={rowsPerPage}
           page={page}
           onPageChange={handleChangePage}
@@ -138,4 +129,4 @@ const ProductWrapper = ({
   );
 };
 
-export default ProductWrapper;
+export default CategoriesWrapper;

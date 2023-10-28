@@ -81,6 +81,7 @@ const DashboardWrapper = (props: DashboardWrapperProps) => {
       <HeaderAdmin
         onClickProfile={onClickProfile}
         open={open}
+        languageName={activeLanguage}
         onClickScale={onClickScale}
         onChangeLanguage={onChangeLanguage}
       />

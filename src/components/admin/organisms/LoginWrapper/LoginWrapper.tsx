@@ -5,7 +5,7 @@ import { IconButton, TextField } from '@mui/material';
 import { TEXT_FIELD_LOGIN } from '@/constants/constant';
 import { Visibility, VisibilityOff } from '@mui/icons-material';
 import { FormikProps } from 'formik';
-import { ParamsLogin } from '@/api_type/login';
+import { ParamsLogin } from '@/api-type/login';
 import './LoginWrapper.scss';
 
 interface LoginWrapperProps {
