@@ -1,15 +1,16 @@
-import { ROUTE_PATH } from '@/constants/constant';
-import LoginPage from '@/pages-auth/LoginPage';
-import NotFoundPage from '@/pages/404';
+import { createBrowserRouter, RouteObject } from 'react-router-dom';
 import HomePage from '@/pages/Home';
+import NotFoundPage from '@/pages/404';
+import Training from '@/pages/Training';
 import Introduce from '@/pages/Introduce';
 import ListPrice from '@/pages/ListPrice';
-import Training from '@/pages/Training';
-import ProductPage from '@/pages-auth/ProductPage';
-import SchedulePage from '@/pages-auth/SchedulePage';
 import UserPage from '@/pages-auth/UserPage';
+import LoginPage from '@/pages-auth/LoginPage';
+import { ROUTE_PATH } from '@/constants/constant';
+import ProductPage from '@/pages-auth/ProductPage';
 import DefaultPage from '@/pages-auth/DefaultPage';
-import { createBrowserRouter, RouteObject } from 'react-router-dom';
+import SchedulePage from '@/pages-auth/SchedulePage';
+import CategoryPage from '@/pages-auth/CategoryPage';
 import { PrivateAdmin, PrivateRouteLogin } from '@/private/private_router';
 
 const router: RouteObject[] = [
@@ -33,7 +34,14 @@ const router: RouteObject[] = [
       </PrivateAdmin>
     ),
   },
-
+  {
+    path: ROUTE_PATH.category,
+    element: (
+      <PrivateAdmin>
+        <CategoryPage />
+      </PrivateAdmin>
+    ),
+  },
   {
     path: ROUTE_PATH.product,
     element: (

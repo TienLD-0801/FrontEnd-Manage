@@ -1,10 +1,13 @@
-import { TableHead, TableRow, TableCell } from '@mui/material';
-import { ColumnUser, ColumnProduct } from '@/type/TableType/table_type';
-import './HeaderTable.scss';
 import { useTranslation } from 'react-i18next';
+import { ColumnUser } from '@/type/TableType/table_user';
+import { TableCell, TableHead, TableRow } from '@mui/material';
+import { ColumnProduct } from '@/type/TableType/table_product';
+import { ColumnCategory } from '@/type/TableType/table_category';
+
+import './HeaderTable.scss';
 
 interface HeaderTableProps {
-  columns: readonly ColumnUser[] | ColumnProduct[];
+  columns: ColumnUser[] | ColumnProduct[] | ColumnCategory[];
 }
 
 const HeaderTable = ({ columns }: HeaderTableProps) => {

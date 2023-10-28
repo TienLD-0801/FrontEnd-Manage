@@ -1,6 +1,6 @@
 import { Container } from '@mui/material';
-import DashboardWrapper from '@/components/admin/organisms/DashboardWrapper/DashboardWrapper';
 import ScheduleWrapper from '@/components/admin/organisms/ScheduleWrapper/ScheduleWrapper';
+import DashboardWrapper from '@/components/admin/organisms/DashboardWrapper/DashboardWrapper';
 
 const SchedulePage = () => {
   return (

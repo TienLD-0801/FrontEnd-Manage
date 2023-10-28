@@ -9,8 +9,8 @@ import {
 } from '@mui/material';
 import React from 'react';
 import HeaderTable from '@/components/admin/atoms/HeaderTable/HeaderTable';
-import { COL_USERS } from '@/type/TableType/table_type';
-import { UserType } from '@/api_type/login';
+import { COL_USERS } from '@/type/TableType/table_user';
+import { UserType } from '@/api-type/login';
 import { DeleteForeverOutlined, EditOutlined } from '@mui/icons-material';
 import Button from '@/components/atoms/Button/Button';
 import { format } from 'date-fns';
@@ -55,7 +55,7 @@ const UsersWrapper = ({
           classes="user-wrapper__container__button"
           onClick={onClickCreate}
         >
-          {t('form.create.user.title')}
+          {t('table.user.buttonCreate')}
         </Button>
       </div>
       <Paper
@@ -131,6 +131,7 @@ const UsersWrapper = ({
         <TablePagination
           rowsPerPageOptions={[10, 25, 100]}
           component="div"
+          labelRowsPerPage={t('table.rowPerPage')}
           count={dataUsers.length}
           rowsPerPage={rowsPerPage}
           page={page}

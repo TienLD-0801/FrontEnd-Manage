@@ -1,5 +1,5 @@
 const TableComponent = () => {
-  return <> table</>;
+  return <div></div>;
 };
 
 export default TableComponent;

@@ -1,28 +1,28 @@
-import { Container, IconButton } from '@mui/material';
-import DashboardWrapper from '@/components/admin/organisms/DashboardWrapper/DashboardWrapper';
-import UsersWrapper from '@/components/admin/organisms/UsersWrapper/UsersWrapper';
 import { useContext, useEffect, useState } from 'react';
-import API from '@/services/axiosClient';
-import { LoadingContext } from '@/context/LoadingContext';
-import { AlertDialogContext } from '@/context/AlertDialogContext';
 import _ from 'lodash';
-import { UserType } from '@/api_type/login';
+import dayjs from 'dayjs';
+import { useFormik } from 'formik';
+import { useTranslation } from 'react-i18next';
+import API from '@/services/axiosClient';
+import { UserType } from '@/api-type/login';
+import { FORMAT_INPUT } from '@/constants/date';
+import { Container, IconButton } from '@mui/material';
+import { LoadingContext } from '@/context/LoadingContext';
+import { Visibility, VisibilityOff } from '@mui/icons-material';
+import { AlertDialogContext } from '@/context/AlertDialogContext';
 import DialogForm from '@/components/admin/atoms/DialogForm/DialogForm';
+import DatePicker from '@/components/admin/atoms/DatePicker/DatePicker';
+import UsersWrapper from '@/components/admin/organisms/UsersWrapper/UsersWrapper';
 import {
   DATA_DIALOG_CREATE_USER,
   DATA_DIALOG_EDIT_USER,
 } from '@/constants/constant';
-import { useFormik } from 'formik';
-import { Visibility, VisibilityOff } from '@mui/icons-material';
+import CustomTextField from '@/components/admin/atoms/CustomTextField/CustomTextField';
+import DashboardWrapper from '@/components/admin/organisms/DashboardWrapper/DashboardWrapper';
 import {
   validationCreateUserSchema,
   validationEditUserSchema,
-} from '@/validations/auth_validation';
-import dayjs from 'dayjs';
-import DatePicker from '@/components/admin/atoms/DatePicker/DatePicker';
-import { FORMAT_INPUT } from '@/constants/date';
-import CustomTextField from '@/components/admin/atoms/CustomTextField/CustomTextField';
-import { useTranslation } from 'react-i18next';
+} from '@/validations/auth-validation';
 
 const UserPage = () => {
   const preloader = useContext(LoadingContext);
@@ -69,11 +69,11 @@ const UserPage = () => {
 
   // get all user
   useEffect(() => {
-    getUSers();
+    getUsers();
   }, []);
 
   // get all user
-  const getUSers = async () => {
+  const getUsers = async () => {
     try {
       preloader.show();
       const response = await API.apiGetUsers();
@@ -109,7 +109,7 @@ const UserPage = () => {
       preloader.show();
       const updateUser = await API.apiUpdateUser(Number(value.id), value);
       const { message } = updateUser.data;
-      await getUSers();
+      await getUsers();
       setIsOpenEdit(false);
       alertDialog.show(message, true);
     } catch (error) {
@@ -137,7 +137,7 @@ const UserPage = () => {
     try {
       preloader.show();
       const response = await API.apiDeleteUser(Number(dataDelete.id));
-      await getUSers();
+      await getUsers();
       const { message } = response.data;
       setIsOpenDelete(false);
       alertDialog.show(message, true);
@@ -155,7 +155,7 @@ const UserPage = () => {
       preloader.show();
       const response = await API.apiCreateUser(value);
       const { message } = response.data;
-      await getUSers();
+      await getUsers();
       setIsOpenCreate(false);
       alertDialog.show(message, true);
     } catch (error) {
@@ -178,7 +178,7 @@ const UserPage = () => {
       </DashboardWrapper>
       <DialogForm
         onClickSave={() => validationCreateUser.handleSubmit()}
-        title={t('form.create.user.title')}
+        title={t('dialog.user.create.title')}
         open={isOpenCreate}
         onClose={() => setIsOpenCreate(false)}
       >
@@ -188,7 +188,7 @@ const UserPage = () => {
               <CustomTextField
                 key={user.id}
                 id={user.id}
-                label={user.label}
+                label={t(user.label!)}
                 margin={user.margin}
                 sx={{ pb: 1 }}
                 fullWidth={true}
@@ -245,7 +245,7 @@ const UserPage = () => {
       </DialogForm>
       <DialogForm
         onClickSave={() => validationEditUser.handleSubmit()}
-        title={t('form.edit.user.title')}
+        title={t('dialog.user.edit.title')}
         open={isOpenEdit}
         onClose={() => setIsOpenEdit(false)}
       >
@@ -310,7 +310,7 @@ const UserPage = () => {
       </DialogForm>
       <DialogForm
         open={isOpenDelete}
-        title={t('form.delete.user.title')}
+        title={t('dialog.user.delete.title')}
         onClose={() => setIsOpenDelete(false)}
         onClickSave={handleAgreeDelete}
       >
@@ -321,9 +321,9 @@ const UserPage = () => {
             alignItems: 'center',
           }}
         >
-          <div>Do you want delete user&nbsp;</div>
+          <div>{t('dialog.user.delete.content')}</div>
           <div style={{ fontSize: 16, fontWeight: 600 }}>
-            "{dataDelete.name}"&nbsp;
+            &nbsp;"{dataDelete.name}"&nbsp;
           </div>
           <div>?</div>
         </div>

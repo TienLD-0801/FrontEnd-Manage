@@ -4,6 +4,7 @@ export default {
       title: 'Dashboard',
       children: {
         default: 'DEFAULT',
+        category: 'CATEGORY',
         product: 'PRODUCT',
         schedule: 'SCHEDULE',
         user: 'USER',
@@ -16,52 +17,104 @@ export default {
     product: {
       title: 'Product',
     },
-    form: {
-      delete: {
+    table: {
+      column: {
         user: {
-          title: 'Delete user',
+          id: 'ID',
+          name: 'Name',
+          email: 'Email',
+          birthDay: 'Birth Day',
+          cardNumber: 'Card Number',
+          phone: 'Phone',
+          role: 'Role',
+          action: 'Action',
+        },
+        category: {
+          id: 'ID',
+          categoryName: 'Category Name',
+          action: 'Action',
         },
         product: {
-          title: 'Delete product',
+          id: 'ID',
+          productName: 'Product Name',
+          categoryName: 'Category Name',
+          urlImg: 'Url Img',
+          description: 'Description',
+          action: 'Action',
         },
       },
-      edit: {
-        user: {
-          title: 'Edit user',
-        },
-        product: {
-          title: 'Edit product',
-        },
+      user: {
+        title: 'Table user',
+        buttonCreate: 'Create user',
       },
-      create: {
-        user: {
+      product: {
+        title: 'Table product',
+        buttonCreate: 'Create product',
+      },
+      category: {
+        title: 'Table category',
+        buttonCreate: 'Create category',
+      },
+      rowPerPage: 'Rows per page',
+    },
+    dialog: {
+      user: {
+        create: {
           title: 'Create user',
+          name: 'Name',
+          email: 'Email',
+          password: 'Password',
+          cardNumber: 'Card Number',
+          phone: 'Phone',
         },
-        product: {
+        edit: {
+          title: 'Edit user',
+          name: 'Name',
+          email: 'Email',
+          password: 'Password',
+          cardNumber: 'Card Number',
+          phone: 'Phone',
+        },
+        delete: {
+          title: 'Delete user',
+          content: 'Are you sure you want to delete the user',
+        },
+      },
+      product: {
+        create: {
           title: 'Create product',
+          nameProduct: 'Product name',
+          categoriesName: 'Product category',
+          urlImg: 'Product image',
+          description: 'Product description',
+          price: 'Product price',
+          titleUpdateFile: 'Update image',
+          noImage: 'No image',
+        },
+        edit: {
+          title: 'Edit product',
+          nameProduct: 'Product name',
+          categoriesName: 'Product category',
+          urlImg: 'Product image',
+          description: 'Product description',
+          price: 'Product price',
+          titleUpdateFile: 'Update image',
+          noImage: 'No image',
+        },
+        delete: {
+          title: 'Delete product',
+          content: 'Are you sure you want to delete the product',
+        },
+      },
+      category: {
+        delete: {
+          title: 'Delete category',
+          content: 'Are you sure you want to delete the category',
         },
       },
       button: {
         cancel: 'Cancel',
         save: 'Save',
-      },
-    },
-    table: {
-      column: {
-        id: 'ID',
-        name: 'Name',
-        email: 'Email',
-        birthDay: 'Birth Day',
-        cardNumber: 'Card Number',
-        phone: 'Phone',
-        role: 'Role',
-        action: 'Action',
-      },
-      user: {
-        title: 'Table user',
-      },
-      product: {
-        title: 'Table product',
       },
     },
   },
