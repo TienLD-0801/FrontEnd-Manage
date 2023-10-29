@@ -14,7 +14,7 @@ import {
 import HeaderTable from '../../atoms/HeaderTable/HeaderTable';
 import { ProductType } from '@/api-type/product';
 import { useState } from 'react';
-import { COL_PRODUCT } from '@/type/TableType/table_product';
+import { COL_PRODUCT } from '@/type/TableType/table-product';
 
 interface ProductWrapperProps {
   dataProduct: ProductType[];
@@ -102,12 +102,12 @@ const ProductWrapper = ({
                                   <DeleteForeverOutlined />
                                 </div>
                               </div>
-                            ) : column.id === 'urlImg' ? (
+                            ) : column.id === 'url' ? (
                               <img
                                 alt=""
                                 width={150}
                                 height={100}
-                                src={`${product.urlImg}`}
+                                src={`${product.url}`}
                               />
                             ) : column.id === 'id' ? (
                               index + 1

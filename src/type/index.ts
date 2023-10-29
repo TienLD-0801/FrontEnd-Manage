@@ -3,11 +3,11 @@ export type DataProductType = {
   productName: string;
   price: number;
   description: string;
-  urlImg: string;
+  url: string;
   nameImg: string;
 };
 
 export interface ColumnProduct {
-  id: 'productName' | 'categoryId' | 'urlImg' | 'nameImg' | 'price';
+  id: 'productName' | 'categoryId' | 'url' | 'nameImg' | 'price';
   label: string;
 }

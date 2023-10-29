@@ -70,6 +70,7 @@ const FormProduct = ({
 
   return (
     <Fragment>
+      {/* create form */}
       <DialogForm
         onClickSave={() => validationCreateProduct.handleSubmit()}
         title={t('dialog.product.create.title')}
@@ -86,6 +87,10 @@ const FormProduct = ({
                 open={isOpenCategory}
                 onOpen={onOpenCategory}
                 onClose={onCloseCategory}
+                disableClearable
+                isOptionEqualToValue={(option, value) =>
+                  option.productCategory === value.productCategory
+                }
                 getOptionLabel={(option) => option.productCategory}
                 options={dataOptionCategory}
                 loading={loadingCategory}
@@ -179,7 +184,7 @@ const FormProduct = ({
                     />
                   </Button>
                 </div>
-                {validationCreateProduct.values.urlImg ? (
+                {validationCreateProduct.values.url ? (
                   <div
                     style={{
                       width: 200,
@@ -191,7 +196,7 @@ const FormProduct = ({
                       width={'100%'}
                       height={'100%'}
                       alt="No Image"
-                      src={validationCreateProduct.values.urlImg}
+                      src={validationCreateProduct.values.url}
                     ></img>
                   </div>
                 ) : (
@@ -234,6 +239,7 @@ const FormProduct = ({
           })}
         </form>
       </DialogForm>
+      {/* edit form */}
       <DialogForm
         onClickSave={() => validationEditProduct.handleSubmit()}
         title={t('dialog.product.edit.title')}
@@ -353,7 +359,7 @@ const FormProduct = ({
                     />
                   </Button>
                 </div>
-                {validationEditProduct.values.urlImg ? (
+                {validationEditProduct.values.url ? (
                   <div
                     style={{
                       width: 200,
@@ -365,7 +371,7 @@ const FormProduct = ({
                       width={'100%'}
                       height={'100%'}
                       alt="No Image"
-                      src={validationEditProduct.values.urlImg}
+                      src={validationEditProduct.values.url}
                     ></img>
                   </div>
                 ) : (

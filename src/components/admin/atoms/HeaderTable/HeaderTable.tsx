@@ -1,8 +1,8 @@
 import { useTranslation } from 'react-i18next';
-import { ColumnUser } from '@/type/TableType/table_user';
+import { ColumnUser } from '@/type/TableType/table-user';
 import { TableCell, TableHead, TableRow } from '@mui/material';
-import { ColumnProduct } from '@/type/TableType/table_product';
-import { ColumnCategory } from '@/type/TableType/table_category';
+import { ColumnProduct } from '@/type/TableType/table-product';
+import { ColumnCategory } from '@/type/TableType/table-category';
 
 import './HeaderTable.scss';
 

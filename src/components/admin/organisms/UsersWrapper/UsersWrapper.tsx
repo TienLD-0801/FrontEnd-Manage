@@ -9,7 +9,7 @@ import {
 } from '@mui/material';
 import React from 'react';
 import HeaderTable from '@/components/admin/atoms/HeaderTable/HeaderTable';
-import { COL_USERS } from '@/type/TableType/table_user';
+import { COL_USERS } from '@/type/TableType/table-user';
 import { UserType } from '@/api-type/login';
 import { DeleteForeverOutlined, EditOutlined } from '@mui/icons-material';
 import Button from '@/components/atoms/Button/Button';

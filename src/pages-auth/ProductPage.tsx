@@ -6,15 +6,17 @@ import { Container } from '@mui/material';
 import { ProductType } from '@/api-type/product';
 import { CategoriesType } from '@/api-type/category';
 import { LoadingContext } from '@/context/LoadingContext';
+import {
+  DATA_DIALOG_EDIT_PRODUCT,
+  DATA_DIALOG_CREATE_PRODUCT,
+} from '@/constants/product';
 import { AlertDialogContext } from '@/context/AlertDialogContext';
 import FormProduct from '@/components/admin/organisms/FormProduct/FormProduct';
-import { validationCreateProductSchema } from '@/validations/product-validation';
-import { validationEditProductSchema } from '@/validations/categories-validation';
-import ProductWrapper from '@/components/admin/organisms/ProductWrapper/ProductWrapper';
 import {
-  DATA_DIALOG_CREATE_PRODUCT,
-  DATA_DIALOG_EDIT_PRODUCT,
-} from '@/constants/product';
+  validationCreateProductSchema,
+  validationEditProductSchema,
+} from '@/validations/product-validation';
+import ProductWrapper from '@/components/admin/organisms/ProductWrapper/ProductWrapper';
 import DashboardWrapper from '@/components/admin/organisms/DashboardWrapper/DashboardWrapper';
 import {
   ValidationCreateProductType,
@@ -40,14 +42,15 @@ const ProductPage = () => {
     id: string;
     name: string;
   }>({ id: '', name: '' });
+  const [file, setFile] = useState<File>();
 
   // validation create product hook
   const validationCreateProduct: ValidationCreateProductType = useFormik({
     initialValues: {
       productName: '',
       categoryName: '',
-      urlImg: '',
       description: '',
+      url: '',
       price: 0,
     },
     validationSchema: validationCreateProductSchema,
@@ -60,7 +63,7 @@ const ProductPage = () => {
       id: '',
       productName: '',
       categoryName: '',
-      urlImg: '',
+      url: '',
       description: '',
       price: 0,
     },
@@ -111,10 +114,17 @@ const ProductPage = () => {
   };
 
   // handle create new product
-  const handleSaveCreateProduct = async (value: any) => {
+  const handleSaveCreateProduct = async (product: ProductType) => {
+    const dataProduct = new FormData();
+    dataProduct.append('productName', product.productName);
+    dataProduct.append('categoryName', product.categoryName);
+    dataProduct.append('fileImage', file!);
+    dataProduct.append('description', product.description);
+    dataProduct.append('price', product.price.toString());
+
     try {
       preloader.show();
-      const response = await API.apiCreateProduct(value);
+      const response = await API.apiCreateProduct(dataProduct);
       const { message } = response.data;
       await getProduct();
       setIsOpenCreateProduct(false);
@@ -138,9 +148,10 @@ const ProductPage = () => {
     const selectedFile = event.target.files?.[0];
     if (selectedFile) {
       const imageUrl = URL.createObjectURL(selectedFile);
+      setFile(selectedFile);
       validationCreateProduct.setValues({
         ...validationCreateProduct.values,
-        urlImg: imageUrl,
+        url: imageUrl,
       });
     }
   };
@@ -160,7 +171,7 @@ const ProductPage = () => {
       id: product.id,
       productName: product.productName,
       categoryName: product.categoryName,
-      urlImg: product.urlImg,
+      url: product.url,
       description: product.description,
       price: product.price,
     });
