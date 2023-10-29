@@ -1,11 +1,5 @@
 export interface ColumnProduct {
-  id:
-    | 'id'
-    | 'productName'
-    | 'categoryName'
-    | 'urlImg'
-    | 'description'
-    | 'action';
+  id: 'id' | 'productName' | 'categoryName' | 'url' | 'description' | 'action';
   align?: 'left' | 'right' | 'center';
   minWidth?: number;
   label: string;
@@ -35,7 +29,7 @@ export const COL_PRODUCT: ColumnProduct[] = [
     align: 'center',
   },
   {
-    id: 'urlImg',
+    id: 'url',
     label: 'table.column.product.urlImg',
     minWidth: 10,
     width: 200,

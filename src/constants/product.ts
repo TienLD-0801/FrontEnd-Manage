@@ -2,7 +2,7 @@ export type DialogCreateProductType = {
   id: string;
   type: 'text' | 'number';
   label?: string;
-  value: 'productName' | 'categoryName' | 'urlImg' | 'description' | 'price';
+  value: 'productName' | 'categoryName' | 'url' | 'description' | 'price';
   margin?: 'none' | 'dense' | 'normal';
   autoComplete?: string;
   isAutoComplete?: boolean;
@@ -29,7 +29,7 @@ export const DATA_DIALOG_CREATE_PRODUCT: DialogCreateProductType[] = [
     id: '3',
     type: 'text',
     label: 'dialog.product.create.urlImg',
-    value: 'urlImg',
+    value: 'url',
     margin: 'dense',
     isImage: true,
   },
@@ -71,7 +71,7 @@ export const DATA_DIALOG_EDIT_PRODUCT: DialogEditProductType[] = [
     id: '3',
     type: 'text',
     label: 'dialog.product.edit.urlImg',
-    value: 'urlImg',
+    value: 'url',
     margin: 'dense',
     isImage: true,
   },

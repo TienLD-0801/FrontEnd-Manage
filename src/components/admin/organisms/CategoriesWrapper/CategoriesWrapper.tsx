@@ -15,7 +15,7 @@ import {
 } from '@mui/material';
 import HeaderTable from '../../atoms/HeaderTable/HeaderTable';
 import { useState } from 'react';
-import { COL_CATEGORIES } from '@/type/TableType/table_category';
+import { COL_CATEGORIES } from '@/type/TableType/table-category';
 
 interface CategoriesWrapperProps {
   dataCategory: CategoriesType[];

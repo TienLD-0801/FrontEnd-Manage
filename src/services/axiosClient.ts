@@ -99,7 +99,17 @@ class AxiosClient {
 
   // api get create product
   apiCreateProduct(params: Object) {
-    return this.axios.post('api/create-product', params, this.config);
+    return this.axios({
+      method: 'post',
+      url: 'api/create-product',
+      data: params,
+      headers: {
+        Accept: 'application/json',
+        'Access-Control-Allow-Origin': '*',
+        'Access-Control-Allow-Headers': 'Content-Type',
+        'Content-Type': 'multipart/form-data',
+      },
+    });
   }
 
   // api delete product
