@@ -1,5 +1,5 @@
 export interface ColumnCategory {
-  id?: 'id' | 'productCategory' | 'action';
+  id?: 'id' | 'categoryName' | 'action';
   align?: 'left' | 'right' | 'center';
   minWidth?: number;
   label: string;
@@ -16,7 +16,7 @@ export const COL_CATEGORIES: ColumnCategory[] = [
     align: 'center',
   },
   {
-    id: 'productCategory',
+    id: 'categoryName',
     label: 'table.column.category.categoryName',
     minWidth: 10,
     width: 150,

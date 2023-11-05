@@ -13,7 +13,7 @@ import {
   TableCell,
   TablePagination,
 } from '@mui/material';
-import HeaderTable from '../../atoms/HeaderTable/HeaderTable';
+import HeaderTable from '@/components/admin/atoms/HeaderTable/HeaderTable';
 import { useState } from 'react';
 import { COL_CATEGORIES } from '@/type/TableType/table-category';
 
@@ -21,12 +21,14 @@ interface CategoriesWrapperProps {
   dataCategory: CategoriesType[];
   onClickDelete: (category: CategoriesType) => void;
   onClickCreate: () => void;
+  onClickEdit: (category: CategoriesType) => void;
 }
 
 const CategoriesWrapper = ({
   dataCategory,
   onClickDelete,
   onClickCreate,
+  onClickEdit,
 }: CategoriesWrapperProps) => {
   const { t } = useTranslation();
   const [page, setPage] = useState<number>(0);
@@ -75,7 +77,7 @@ const CategoriesWrapper = ({
                       hover
                       role="checkbox"
                       tabIndex={-1}
-                      key={category.id.toString()}
+                      key={category.id!}
                     >
                       {COL_CATEGORIES.map((column) => {
                         const value = category[column.id!];
@@ -89,7 +91,7 @@ const CategoriesWrapper = ({
                               <div className="category-wrapper__action">
                                 <div
                                   className="category-wrapper__action__edit"
-                                  // onClick={() => onClickEdit(user)}
+                                  onClick={() => onClickEdit(category)}
                                 >
                                   <EditOutlined />
                                 </div>

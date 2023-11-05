@@ -105,16 +105,31 @@ export default {
           title: '製品を削除',
           content: '製品を削除してもよろしいですか',
         },
+        warning: {
+          title: '警告',
+          content:
+            '現在、カテゴリリストが存在しません。製品の作成を開始するには、カテゴリリストを更新してください。ありがとうございます！',
+        },
       },
       category: {
+        create: {
+          title: 'カテゴリを作成',
+          categoryName: 'カテゴリ名',
+        },
         delete: {
           title: 'カテゴリを削除',
           content: 'カテゴリを削除しますか',
+        },
+        warning: {
+          title: '警告',
+          content:
+            '現在の製品リストでこのカテゴリが使用されています。削除できません。ありがとうございます！',
         },
       },
       button: {
         cancel: 'キャンセル',
         save: '保存',
+        close: '閉じる',
       },
     },
   },

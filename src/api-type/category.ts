@@ -1,5 +1,5 @@
 export type CategoriesType = {
-  id: string;
-  productCategory: string;
+  id?: string;
+  categoryName: string;
   action?: undefined;
 };

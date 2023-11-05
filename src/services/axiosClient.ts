@@ -122,7 +122,17 @@ class AxiosClient {
     return this.axios.get('api/categories', this.config);
   }
 
-  // api delete user
+  // api update category
+  apiUpdateCategory(id: number, params: Object) {
+    return this.axios.put(`api/update-category/${id}`, params, this.config);
+  }
+
+  // api create category
+  apiCreateCategory(params: Object) {
+    return this.axios.post('api/create-category', params, this.config);
+  }
+
+  // api delete category
   apiDeleteCategory(id: number) {
     return this.axios.delete(`api/delete-category/${id}`, this.config);
   }

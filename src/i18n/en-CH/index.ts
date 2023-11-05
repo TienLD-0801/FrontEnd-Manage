@@ -105,13 +105,26 @@ export default {
           title: '删除产品',
           content: '您确定要删除产品吗',
         },
+        warning: {
+          title: '警告',
+          content: '目前类别列表不存在，请更新类别列表以开始创建产品，谢谢！',
+        },
       },
       category: {
+        create: {
+          title: '创建类别',
+          categoryName: '类别名称',
+        },
         delete: { title: '删除类别', content: '是否删除类别' },
+        warning: {
+          title: '警告',
+          content: '当前产品列表正在使用此类别，您无法删除它。谢谢！',
+        },
       },
       button: {
         cancel: '取消',
         save: '保存',
+        close: '关闭',
       },
     },
   },

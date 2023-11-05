@@ -8,7 +8,7 @@ import HeaderAdmin from '@/components/admin/molecules/HeaderAdmin/HederAdmin';
 import ProfileDropdown from '@/components/admin/atoms/ProfileDropdown/ProfileDropdown';
 import { RootStatesType } from '@/store';
 import { updateScale } from '@/store/slices/ScaleMenuSlice';
-import LanguageDropdown from '../../atoms/LanguageDropdown/LanguageDropdown';
+import LanguageDropdown from '@/components/admin/atoms/LanguageDropdown/LanguageDropdown';
 import { updateLanguage } from '@/store/slices/LanguageSlice';
 import './DashboardWrapper.scss';
 import { useTranslation } from 'react-i18next';

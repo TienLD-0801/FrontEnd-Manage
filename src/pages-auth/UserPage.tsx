@@ -1,24 +1,22 @@
 import { useContext, useEffect, useState } from 'react';
 import _ from 'lodash';
-import dayjs from 'dayjs';
 import { useFormik } from 'formik';
-import { useTranslation } from 'react-i18next';
 import API from '@/services/axiosClient';
+import { Container } from '@mui/material';
 import { UserType } from '@/api-type/login';
-import { FORMAT_INPUT } from '@/constants/date';
-import { Container, IconButton } from '@mui/material';
 import { LoadingContext } from '@/context/LoadingContext';
-import { Visibility, VisibilityOff } from '@mui/icons-material';
 import { AlertDialogContext } from '@/context/AlertDialogContext';
-import DialogForm from '@/components/admin/atoms/DialogForm/DialogForm';
-import DatePicker from '@/components/admin/atoms/DatePicker/DatePicker';
+import FormUser from '@/components/admin/organisms/FormUser/FormUser';
 import UsersWrapper from '@/components/admin/organisms/UsersWrapper/UsersWrapper';
 import {
   DATA_DIALOG_CREATE_USER,
   DATA_DIALOG_EDIT_USER,
 } from '@/constants/constant';
-import CustomTextField from '@/components/admin/atoms/CustomTextField/CustomTextField';
 import DashboardWrapper from '@/components/admin/organisms/DashboardWrapper/DashboardWrapper';
+import {
+  ValidationCreateUserType,
+  ValidationEditUserType,
+} from '@/validations/type-formik/user';
 import {
   validationCreateUserSchema,
   validationEditUserSchema,
@@ -27,19 +25,21 @@ import {
 const UserPage = () => {
   const preloader = useContext(LoadingContext);
   const alertDialog = useContext(AlertDialogContext);
-  const { t } = useTranslation();
-  const [isOpenEdit, setIsOpenEdit] = useState<boolean>(false);
-  const [isOpenCreate, setIsOpenCreate] = useState<boolean>(false);
+  const [isOpenEditUser, setIsOpenEditUser] = useState<boolean>(false);
+  const [isOpenCreateUser, setIsOpenCreateUser] = useState<boolean>(false);
   const [isShowPassword, setIsShowPassword] = useState<boolean>(false);
-  const [isOpenDelete, setIsOpenDelete] = useState<boolean>(false);
+  const [isOpenDeleteUser, setIsOpenDeleteUser] = useState<boolean>(false);
   const [dataUsers, setDataUsers] = useState<UserType[]>([]);
-  const [dataDelete, setDataDelete] = useState<{ id: string; name: string }>({
+  const [dataDeleteUser, setDataDeleteUser] = useState<{
+    id: string;
+    name: string;
+  }>({
     id: '',
     name: '',
   });
 
   // validation create user hook
-  const validationCreateUser = useFormik({
+  const validationCreateUser: ValidationCreateUserType = useFormik({
     initialValues: {
       name: '',
       email: '',
@@ -53,7 +53,7 @@ const UserPage = () => {
   });
 
   // validation edit user hook
-  const validationEditUser = useFormik({
+  const validationEditUser: ValidationEditUserType = useFormik({
     initialValues: {
       id: '',
       name: '',
@@ -100,7 +100,7 @@ const UserPage = () => {
       phone: user.phone,
       role: user.role,
     });
-    setIsOpenEdit(true);
+    setIsOpenEditUser(true);
   };
 
   // Click save edit
@@ -110,7 +110,7 @@ const UserPage = () => {
       const updateUser = await API.apiUpdateUser(Number(value.id), value);
       const { message } = updateUser.data;
       await getUsers();
-      setIsOpenEdit(false);
+      setIsOpenEditUser(false);
       alertDialog.show(message, true);
     } catch (error) {
       const message = _.get(error, 'message', JSON.stringify(error));
@@ -121,25 +121,25 @@ const UserPage = () => {
   };
 
   // handle show dialog create
-  const onClickCreate = () => {
+  const onClickCreateUser = () => {
     validationCreateUser.resetForm();
-    setIsOpenCreate(true);
+    setIsOpenCreateUser(true);
   };
 
   // handle show dialog delete
   const onClickDelete = (user: UserType) => {
-    setDataDelete({ id: user.id, name: user.name });
-    setIsOpenDelete(true);
+    setDataDeleteUser({ id: user.id, name: user.name });
+    setIsOpenDeleteUser(true);
   };
 
   // handle agree delete
-  const handleAgreeDelete = async () => {
+  const onClickSaveDeleteUser = async () => {
     try {
       preloader.show();
-      const response = await API.apiDeleteUser(Number(dataDelete.id));
+      const response = await API.apiDeleteUser(Number(dataDeleteUser.id));
       await getUsers();
       const { message } = response.data;
-      setIsOpenDelete(false);
+      setIsOpenDeleteUser(false);
       alertDialog.show(message, true);
     } catch (error) {
       const message = _.get(error, 'message', JSON.stringify(error));
@@ -156,7 +156,7 @@ const UserPage = () => {
       const response = await API.apiCreateUser(value);
       const { message } = response.data;
       await getUsers();
-      setIsOpenCreate(false);
+      setIsOpenCreateUser(false);
       alertDialog.show(message, true);
     } catch (error) {
       const message = _.get(error, 'message', JSON.stringify(error));
@@ -170,13 +170,29 @@ const UserPage = () => {
     <Container id="users">
       <DashboardWrapper>
         <UsersWrapper
-          onClickCreate={onClickCreate}
+          onClickCreate={onClickCreateUser}
           onClickDelete={(user) => onClickDelete(user)}
           onClickEdit={(user) => onClickEdit(user)}
           dataUsers={dataUsers ?? []}
         />
       </DashboardWrapper>
-      <DialogForm
+      <FormUser
+        validationCreateUser={validationCreateUser}
+        validationEditUser={validationEditUser}
+        isOpenCreateUser={isOpenCreateUser}
+        onCloseCreateUser={() => setIsOpenCreateUser(false)}
+        dataDialogCreateUser={DATA_DIALOG_CREATE_USER}
+        dataDialogEditUser={DATA_DIALOG_EDIT_USER}
+        isShowPassword={isShowPassword}
+        onShowPassword={() => setIsShowPassword(!isShowPassword)}
+        isOpenEditUser={isOpenEditUser}
+        onCloseEditUser={() => setIsOpenEditUser(false)}
+        isOpenDeleteUser={isOpenDeleteUser}
+        onCloseDeleteUser={() => setIsOpenDeleteUser(false)}
+        dataDeleteUser={dataDeleteUser}
+        onClickSaveDeleteUser={onClickSaveDeleteUser}
+      />
+      {/* <DialogForm
         onClickSave={() => validationCreateUser.handleSubmit()}
         title={t('dialog.user.create.title')}
         open={isOpenCreate}
@@ -292,21 +308,6 @@ const UserPage = () => {
             />
           );
         })}
-        {/* <Box sx={{ minWidth: 400 }}>
-          <FormControl fullWidth>
-            <InputLabel id="demo-simple-select-label">Role</InputLabel>
-            <Select
-              labelId="demo-simple-select-label"
-              id="demo-simple-select"
-              value={validationEditUser.values[user.value]}
-              onChange={(e) => handleChangeValueEdit(e, 'role')}
-              label="Role"
-            >
-              <MenuItem value={1}>Staff</MenuItem>
-              <MenuItem value={0}>Admin</MenuItem>
-            </Select>
-          </FormControl>
-        </Box> */}
       </DialogForm>
       <DialogForm
         open={isOpenDelete}
@@ -327,7 +328,7 @@ const UserPage = () => {
           </div>
           <div>?</div>
         </div>
-      </DialogForm>
+      </DialogForm> */}
     </Container>
   );
 };

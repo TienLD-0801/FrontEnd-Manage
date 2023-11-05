@@ -19,6 +19,7 @@ import {
   ValidationCreateProductType,
   ValidationEditProductType,
 } from '@/validations/type-formik/product';
+import './FormProduct.scss';
 
 interface FormProductProps {
   dataDialogCreateProduct: DialogCreateProductType[];
@@ -43,6 +44,8 @@ interface FormProductProps {
   onClickSaveDeleteProduct: () => void;
   onChangeFileProduct: (event: ChangeEvent<HTMLInputElement>) => void;
   fileInputRef: LegacyRef<HTMLInputElement>;
+  isOpenWarning: boolean;
+  onCloseWarning: () => void;
 }
 
 const FormProduct = ({
@@ -65,6 +68,8 @@ const FormProduct = ({
   onClickSaveDeleteProduct,
   onChangeFileProduct,
   fileInputRef,
+  isOpenWarning,
+  onCloseWarning,
 }: FormProductProps) => {
   const { t } = useTranslation();
 
@@ -89,9 +94,9 @@ const FormProduct = ({
                 onClose={onCloseCategory}
                 disableClearable
                 isOptionEqualToValue={(option, value) =>
-                  option.productCategory === value.productCategory
+                  option.categoryName === value.categoryName
                 }
-                getOptionLabel={(option) => option.productCategory}
+                getOptionLabel={(option) => option.categoryName}
                 options={dataOptionCategory}
                 loading={loadingCategory}
                 onSelect={(event: any) => {
@@ -252,11 +257,11 @@ const FormProduct = ({
               <Autocomplete
                 value={dataOptionCategory.find(
                   (category) =>
-                    category.productCategory ===
+                    category.categoryName ===
                     validationEditProduct.values.categoryName,
                 )}
                 isOptionEqualToValue={(option, value) =>
-                  option.productCategory === value?.productCategory
+                  option.categoryName === value?.categoryName
                 }
                 onKeyDown={(event) => {
                   event.preventDefault();
@@ -268,7 +273,7 @@ const FormProduct = ({
                 open={isOpenCategory}
                 onOpen={onOpenCategory}
                 onClose={onCloseCategory}
-                getOptionLabel={(option) => option.productCategory}
+                getOptionLabel={(option) => option.categoryName}
                 options={dataOptionCategory}
                 loading={loadingCategory}
                 onSelect={(event: any) => {
@@ -435,6 +440,16 @@ const FormProduct = ({
           </div>
           <div>?</div>
         </div>
+      </DialogForm>
+      <DialogForm
+        title={t('dialog.product.warning.title')}
+        open={isOpenWarning}
+        colorTitle="red"
+        type="warning"
+        onClose={onCloseWarning}
+        classNameDialog="dialog"
+      >
+        {t('dialog.product.warning.content')}
       </DialogForm>
     </Fragment>
   );
