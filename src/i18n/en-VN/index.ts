@@ -104,32 +104,35 @@ export default {
           title: 'Xoá sản phẩm',
           content: 'Bạn muốn xoá sản phẩm',
         },
+        warning: {
+          title: 'Cảnh báo',
+          content:
+            'Hiện tại danh sách thể loại đang không tồn tại , vui lòng cập nhật danh sách thể loại để có thể bắt đầu tạo sản phẩm , xin cảm ơn !',
+        },
       },
       category: {
         create: {
-          title: 'Tạo người dùng',
-          name: 'Tên',
-          email: 'Email',
-          password: 'Mật khẩu',
-          cardNumber: 'CMND/CCCC',
-          phone: 'Số điện thoại',
+          title: 'Tạo thể loại',
+          categoryName: 'Tên thể loại',
         },
         edit: {
-          title: 'Chỉnh sửa người dùng',
-          name: 'Name',
-          email: 'Email',
-          password: 'Password',
-          cardNumber: 'Card Number',
-          phone: 'Phone',
+          title: 'Chỉnh sửa thể loại',
+          categoryName: 'Tên thể loại',
         },
         delete: {
           title: 'Xoá thể loại',
           content: 'Bạn muốn xoá thể loại',
         },
+        warning: {
+          title: 'Cảnh báo',
+          content:
+            'Hiện tại danh sách sản phẩm đang sử dụng thể loại này , bạn không thể xoá nó , xin cảm ơn !',
+        },
       },
       button: {
         cancel: 'Đóng',
         save: 'Chấp nhận',
+        close: 'Đóng',
       },
     },
   },

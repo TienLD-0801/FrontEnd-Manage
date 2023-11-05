@@ -11,7 +11,7 @@ import {
   TableCell,
   TablePagination,
 } from '@mui/material';
-import HeaderTable from '../../atoms/HeaderTable/HeaderTable';
+import HeaderTable from '@/components/admin/atoms/HeaderTable/HeaderTable';
 import { ProductType } from '@/api-type/product';
 import { useState } from 'react';
 import { COL_PRODUCT } from '@/type/TableType/table-product';

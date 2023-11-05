@@ -105,16 +105,31 @@ export default {
           title: 'Delete product',
           content: 'Are you sure you want to delete the product',
         },
+        warning: {
+          title: 'Warning',
+          content:
+            'The category list does not exist at the moment. Please update the category list to start creating products. Thank you!',
+        },
       },
       category: {
+        create: {
+          title: 'Create Category',
+          categoryName: 'Category Name',
+        },
         delete: {
           title: 'Delete category',
           content: 'Are you sure you want to delete the category',
+        },
+        warning: {
+          title: 'Warning',
+          content:
+            'This category is currently in use by the product list. You cannot delete it. Thank you!',
         },
       },
       button: {
         cancel: 'Cancel',
         save: 'Save',
+        close: 'Close',
       },
     },
   },

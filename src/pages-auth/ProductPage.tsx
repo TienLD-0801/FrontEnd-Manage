@@ -43,6 +43,7 @@ const ProductPage = () => {
     name: string;
   }>({ id: '', name: '' });
   const [file, setFile] = useState<File>();
+  const [isOpenWarning, setIsOpenWarning] = useState<boolean>(false);
 
   // validation create product hook
   const validationCreateProduct: ValidationCreateProductType = useFormik({
@@ -84,6 +85,7 @@ const ProductPage = () => {
 
   useEffect(() => {
     getProduct();
+    getCategory();
   }, []);
 
   const getCategory = async () => {
@@ -139,8 +141,12 @@ const ProductPage = () => {
 
   // handle show dialog create product
   const onClickCreateProduct = () => {
-    validationCreateProduct.resetForm();
-    setIsOpenCreateProduct(true);
+    if (dataOptionCategory.length <= 0) {
+      setIsOpenWarning(true);
+    } else {
+      validationCreateProduct.resetForm();
+      setIsOpenCreateProduct(true);
+    }
   };
 
   // handle file change url img
@@ -164,7 +170,6 @@ const ProductPage = () => {
   // handle onClick Edit product
   const onClickEditProduct = async (product: ProductType) => {
     // reset validation edit
-
     validationEditProduct.resetForm();
     await getCategory();
     validationEditProduct.setValues({
@@ -232,6 +237,8 @@ const ProductPage = () => {
         isOpenEditProduct={isOpenEditProduct}
         validationEditProduct={validationEditProduct}
         onCloseEditProduct={() => setIsOpenEditProduct(false)}
+        isOpenWarning={isOpenWarning}
+        onCloseWarning={() => setIsOpenWarning(false)}
       />
     </Container>
   );

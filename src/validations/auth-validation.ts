@@ -15,7 +15,7 @@ export const validationEditUserSchema = Yup.object().shape({
   email: Yup.string().email('Invalid email').required('Email is required'),
   date_of_birth: Yup.date().required('Date is required'),
   card_id: Yup.string().required('CMND or CCCD is required'),
-  phone: Yup.number().required('Phone is required'),
+  phone: Yup.string().required('Phone is required'),
 });
 
 // validation login form validation
