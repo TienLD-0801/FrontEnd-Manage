@@ -1,0 +1,13 @@
+version: '3.8'
+
+services:
+  frontend:
+    image: leduytien0801/frontend-manage:latest
+    container_name: frontend-manage
+    build:
+      context: .
+      dockerfile: Dockerfile
+    env_file: .env
+    ports:
+      - 4000:4000
+
