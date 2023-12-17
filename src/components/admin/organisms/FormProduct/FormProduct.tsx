@@ -1,8 +1,8 @@
 import {
   DialogCreateProductType,
   DialogEditProductType,
-} from '@/constants/product';
-import { VisuallyHiddenInput } from '@/css/type/css-type';
+} from '@/shared/constants/product';
+import { VisuallyHiddenInput } from '@/assets/css/type/css-type';
 import { CloudUploadOutlined } from '@mui/icons-material';
 import {
   Autocomplete,
@@ -14,11 +14,11 @@ import { ChangeEvent, Fragment, LegacyRef } from 'react';
 import CustomTextField from '@/components/admin/atoms/CustomTextField/CustomTextField';
 import DialogForm from '@/components/admin/atoms/DialogForm/DialogForm';
 import { useTranslation } from 'react-i18next';
-import { CategoriesType } from '@/api-type/category';
+import { CategoriesType } from '@/shared/types/api-type/category';
 import {
   ValidationCreateProductType,
   ValidationEditProductType,
-} from '@/validations/type-formik/product';
+} from '@/shared/validations/type-formik/product';
 import './FormProduct.scss';
 
 interface FormProductProps {
@@ -30,7 +30,7 @@ interface FormProductProps {
   onCloseCreateProduct: () => void;
   onOpenCategory: () => void;
   onCloseCategory: () => void;
-  dataOptionCategory: CategoriesType[];
+  dataOptionCategory: CategoriesType;
   loadingCategory: boolean;
   validationCreateProduct: ValidationCreateProductType;
   validationEditProduct: ValidationEditProductType;
@@ -46,6 +46,7 @@ interface FormProductProps {
   fileInputRef: LegacyRef<HTMLInputElement>;
   isOpenWarning: boolean;
   onCloseWarning: () => void;
+  handleScroll: (event: any) => void;
 }
 
 const FormProduct = ({
@@ -70,6 +71,7 @@ const FormProduct = ({
   fileInputRef,
   isOpenWarning,
   onCloseWarning,
+  handleScroll,
 }: FormProductProps) => {
   const { t } = useTranslation();
 
@@ -86,6 +88,10 @@ const FormProduct = ({
           {dataDialogCreateProduct.map((product) => {
             return product.isAutoComplete ? (
               <Autocomplete
+                ListboxProps={{
+                  onScroll: handleScroll,
+                  style: { maxHeight: 150, overflow: 'auto' },
+                }}
                 key={product.id}
                 id={product.id}
                 fullWidth={true}
@@ -97,7 +103,7 @@ const FormProduct = ({
                   option.categoryName === value.categoryName
                 }
                 getOptionLabel={(option) => option.categoryName}
-                options={dataOptionCategory}
+                options={dataOptionCategory.items}
                 loading={loadingCategory}
                 onSelect={(event: any) => {
                   validationCreateProduct.setValues({
@@ -255,7 +261,7 @@ const FormProduct = ({
           {dataDialogEditProduct.map((product) => {
             return product.isAutoComplete ? (
               <Autocomplete
-                value={dataOptionCategory.find(
+                value={dataOptionCategory.items.find(
                   (category) =>
                     category.categoryName ===
                     validationEditProduct.values.categoryName,
@@ -274,7 +280,7 @@ const FormProduct = ({
                 onOpen={onOpenCategory}
                 onClose={onCloseCategory}
                 getOptionLabel={(option) => option.categoryName}
-                options={dataOptionCategory}
+                options={dataOptionCategory.items}
                 loading={loadingCategory}
                 onSelect={(event: any) => {
                   validationEditProduct.setValues({

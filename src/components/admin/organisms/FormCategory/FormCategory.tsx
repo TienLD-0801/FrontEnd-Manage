@@ -4,11 +4,11 @@ import { useTranslation } from 'react-i18next';
 import {
   ValidationCreateCategoryType,
   ValidationEditCategoryType,
-} from '@/validations/type-formik/category';
+} from '@/shared/validations/type-formik/category';
 import {
   DialogCreateCategoryType,
   DialogEditCategoryType,
-} from '@/constants/category';
+} from '@/shared/constants/category';
 import CustomTextField from '@/components/admin/atoms/CustomTextField/CustomTextField';
 
 interface FormCategoryProps {

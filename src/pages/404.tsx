@@ -1,7 +1,7 @@
 import { Container } from '@mui/material';
 import NotFoundWrapper from '@/components/organisms/NotFoundWrapper/NotFoundWrapper';
-import { goTo } from '@/ts/router';
-import { ROUTE_PATH } from '@/constants/constant';
+import { goTo } from '@/routers/router';
+import { ROUTE_PATH } from '@/shared/constants/constant';
 
 const NotFoundPage = () => {
   return (

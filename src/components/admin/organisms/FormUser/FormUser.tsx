@@ -1,9 +1,8 @@
 import { Fragment } from 'react';
-
 import dayjs from 'dayjs';
 import { useTranslation } from 'react-i18next';
 import { IconButton } from '@mui/material';
-import { FORMAT_INPUT } from '@/constants/date';
+import { FORMAT_INPUT } from '@/shared/constants/date';
 import { Visibility, VisibilityOff } from '@mui/icons-material';
 import DialogForm from '@/components/admin/atoms/DialogForm/DialogForm';
 import DatePicker from '@/components/admin/atoms/DatePicker/DatePicker';
@@ -11,11 +10,11 @@ import CustomTextField from '@/components/admin/atoms/CustomTextField/CustomText
 import {
   DataDialogCreateUserType,
   DataDialogEditUserType,
-} from '@/constants/constant';
+} from '@/shared/constants/constant';
 import {
   ValidationCreateUserType,
   ValidationEditUserType,
-} from '@/validations/type-formik/user';
+} from '@/shared/validations/type-formik/user';
 
 interface FormUserProps {
   validationCreateUser: ValidationCreateUserType;
@@ -173,7 +172,7 @@ const FormUser = ({
       <DialogForm
         open={isOpenDeleteUser}
         title={t('dialog.user.delete.title')}
-        onClose={() => onCloseDeleteUser}
+        onClose={onCloseDeleteUser}
         onClickSave={onClickSaveDeleteUser}
       >
         <div

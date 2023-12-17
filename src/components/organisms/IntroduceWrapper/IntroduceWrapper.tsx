@@ -1,4 +1,4 @@
-import { DataIntroduceType } from '@/constants/constant';
+import { DataIntroduceType } from '@/shared/constants/constant';
 import IntroduceItem from '@/components/molecules/IntroduceItem/IntroduceItem';
 import './IntroduceWrapper.scss';
 

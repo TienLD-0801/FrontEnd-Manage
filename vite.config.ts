@@ -26,7 +26,7 @@ export default ({ mode }) => {
     css: {
       preprocessorOptions: {
         scss: {
-          additionalData: ['@import "./src/css/commons/responsive.scss";'],
+          additionalData: ['@import "./src/assets/css/commons/responsive.scss";'],
         },
       },
     },
