@@ -1,4 +1,4 @@
-    # 1. For build React app
+ # 1. For build React app
 FROM node:alpine AS builder
 
 WORKDIR /fronend-manage
