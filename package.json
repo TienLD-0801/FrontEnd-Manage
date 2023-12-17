@@ -10,7 +10,8 @@
     "prettier:check": "prettier --check 'src/**/*.{ts,tsx}'",
     "prettier:fix": "prettier --write 'src/**/*.{ts,tsx}'",
     "lint": "eslint . --ext ts,tsx --report-unused-disable-directives --max-warnings 0",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "docker-compose-up" : "docker-compose -f docker-compose.yml up --build -d"
   },
   "dependencies": {
     "@emotion/react": "^11.11.1",
