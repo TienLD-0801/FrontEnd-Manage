@@ -1,6 +1,6 @@
 import { Navigation, Pagination, Scrollbar, A11y } from 'swiper/modules';
 import { Swiper, SwiperSlide } from 'swiper/react';
-import { DataSlideType } from '@/constants/constant';
+import { DataSlideType } from '@/shared/constants/constant';
 import 'swiper/css';
 import 'swiper/css/navigation';
 import 'swiper/css/pagination';

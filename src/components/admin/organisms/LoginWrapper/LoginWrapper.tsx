@@ -2,10 +2,10 @@ import { useState } from 'react';
 import Button from '@/components/atoms/Button/Button';
 import { useTranslation } from 'react-i18next';
 import { IconButton, TextField } from '@mui/material';
-import { TEXT_FIELD_LOGIN } from '@/constants/constant';
+import { TEXT_FIELD_LOGIN } from '@/shared/constants/constant';
 import { Visibility, VisibilityOff } from '@mui/icons-material';
 import { FormikProps } from 'formik';
-import { ParamsLogin } from '@/api-type/login';
+import { ParamsLogin } from '@/shared/types/api-type/login';
 import './LoginWrapper.scss';
 
 interface LoginWrapperProps {

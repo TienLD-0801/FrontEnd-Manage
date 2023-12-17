@@ -1,15 +1,15 @@
 import { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { updateUser } from '@/store/slices/UserSlice';
-import { goTo } from '@/ts/router';
-import { DATA_DASHBOARD, ROUTE_PATH } from '@/constants/constant';
+import { updateUser } from '@/stores/slices/UserSlice';
+import { goTo } from '@/routers/router';
+import { DATA_DASHBOARD, ROUTE_PATH } from '@/shared/constants/constant';
 import { useLocation } from 'react-router-dom';
 import HeaderAdmin from '@/components/admin/molecules/HeaderAdmin/HederAdmin';
 import ProfileDropdown from '@/components/admin/atoms/ProfileDropdown/ProfileDropdown';
-import { RootStatesType } from '@/store';
-import { updateScale } from '@/store/slices/ScaleMenuSlice';
+import { RootStatesType } from '@/stores';
+import { updateScale } from '@/stores/slices/ScaleMenuSlice';
 import LanguageDropdown from '@/components/admin/atoms/LanguageDropdown/LanguageDropdown';
-import { updateLanguage } from '@/store/slices/LanguageSlice';
+import { updateLanguage } from '@/stores/slices/LanguageSlice';
 import './DashboardWrapper.scss';
 import { useTranslation } from 'react-i18next';
 

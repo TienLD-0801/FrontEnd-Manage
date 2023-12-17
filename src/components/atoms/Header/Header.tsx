@@ -1,7 +1,8 @@
 import SearchDialog from '../SearchDialog/SearchDialog';
 import { useState } from 'react';
-import { DATA_HEADER } from '@/constants/constant';
+import { DATA_HEADER } from '@/shared/constants/constant';
 import './Header.scss';
+import { goTo } from '@/routers/router';
 
 const Header = () => {
   const [isShowSearchDialog, setIsShowSearchDialog] = useState(false);
@@ -18,7 +19,7 @@ const Header = () => {
       {DATA_HEADER.map((e) => (
         <div
           onClick={() => {
-            // f7.view.main.router.navigate(e.routerName!);
+            goTo(e.routerName);
           }}
           className="color-theme-black title_text"
           key={e.id}

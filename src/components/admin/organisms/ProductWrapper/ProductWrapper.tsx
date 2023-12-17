@@ -9,18 +9,18 @@ import {
   TableBody,
   TableRow,
   TableCell,
-  TablePagination,
 } from '@mui/material';
 import HeaderTable from '@/components/admin/atoms/HeaderTable/HeaderTable';
-import { ProductType } from '@/api-type/product';
-import { useState } from 'react';
-import { COL_PRODUCT } from '@/type/TableType/table-product';
+import { ProductItem, ProductType } from '@/shared/types/api-type/product';
+import { COL_PRODUCT } from '@/shared/types/TableType/table-product';
+import PaginationCustom from '@/components/atoms/PaginationCustom/PaginationCustom';
 
 interface ProductWrapperProps {
-  dataProduct: ProductType[];
+  dataProduct: ProductType;
   onClickCreateProduct: () => void;
-  onClickEditProduct: (product: ProductType) => void;
-  onClickDelete: (product: ProductType) => void;
+  onClickEditProduct: (product: ProductItem) => void;
+  onClickDelete: (product: ProductItem) => void;
+  handlePageChange: (event: any, page: number) => void;
 }
 
 const ProductWrapper = ({
@@ -28,20 +28,9 @@ const ProductWrapper = ({
   onClickCreateProduct,
   onClickEditProduct,
   onClickDelete,
+  handlePageChange,
 }: ProductWrapperProps) => {
   const { t } = useTranslation();
-  const [page, setPage] = useState<number>(0);
-  const [rowsPerPage, setRowsPerPage] = useState<number>(10);
-  const handleChangePage = (_: unknown, newPage: number) => {
-    setPage(newPage);
-  };
-
-  const handleChangeRowsPerPage = (
-    event: React.ChangeEvent<HTMLInputElement>,
-  ) => {
-    setRowsPerPage(+event.target.value);
-    setPage(0);
-  };
 
   return (
     <div className="product-wrapper">
@@ -68,72 +57,66 @@ const ProductWrapper = ({
           <Table stickyHeader sx={{ m: 0 }}>
             <HeaderTable columns={COL_PRODUCT} i18nIsDynamicList={true} />
             <TableBody>
-              {dataProduct
-                .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
-                .map((product, index) => {
-                  return (
-                    <TableRow
-                      hover
-                      role="checkbox"
-                      tabIndex={-1}
-                      key={product.id}
-                    >
-                      {COL_PRODUCT.map((column) => {
-                        const value = product[column.id!];
+              {dataProduct.items.map((product, index) => {
+                return (
+                  <TableRow
+                    hover
+                    role="checkbox"
+                    tabIndex={-1}
+                    key={product.id}
+                  >
+                    {COL_PRODUCT.map((column) => {
+                      const value = product[column.id!];
 
-                        return (
-                          <TableCell
-                            key={column.id}
-                            align={column.align}
-                            className="table"
-                          >
-                            {column.id === 'action' ? (
-                              <div className="user-wrapper__action">
-                                <div
-                                  className="user-wrapper__action__edit"
-                                  onClick={() => onClickEditProduct(product)}
-                                >
-                                  <EditOutlined />
-                                </div>
-                                <div
-                                  className="user-wrapper__action__delete"
-                                  onClick={() => onClickDelete(product)}
-                                >
-                                  <DeleteForeverOutlined />
-                                </div>
+                      return (
+                        <TableCell
+                          key={column.id}
+                          align={column.align}
+                          className="table"
+                        >
+                          {column.id === 'action' ? (
+                            <div className="user-wrapper__action">
+                              <div
+                                className="user-wrapper__action__edit"
+                                onClick={() => onClickEditProduct(product)}
+                              >
+                                <EditOutlined />
                               </div>
-                            ) : column.id === 'url' ? (
-                              <img
-                                alt=""
-                                width={150}
-                                height={100}
-                                src={`${product.url}`}
-                              />
-                            ) : column.id === 'id' ? (
-                              index + 1
-                            ) : (
-                              value
-                            )}
-                          </TableCell>
-                        );
-                      })}
-                    </TableRow>
-                  );
-                })}
+                              <div
+                                className="user-wrapper__action__delete"
+                                onClick={() => onClickDelete(product)}
+                              >
+                                <DeleteForeverOutlined />
+                              </div>
+                            </div>
+                          ) : column.id === 'url' ? (
+                            <img
+                              alt=""
+                              width={150}
+                              height={100}
+                              src={`${product.url}`}
+                            />
+                          ) : column.id === 'id' ? (
+                            index + 1
+                          ) : (
+                            value
+                          )}
+                        </TableCell>
+                      );
+                    })}
+                  </TableRow>
+                );
+              })}
             </TableBody>
           </Table>
         </TableContainer>
-        <TablePagination
-          rowsPerPageOptions={[10, 25, 100]}
-          component="div"
-          labelRowsPerPage={t('table.rowPerPage')}
-          count={dataProduct.length}
-          rowsPerPage={rowsPerPage}
-          page={page}
-          onPageChange={handleChangePage}
-          onRowsPerPageChange={handleChangeRowsPerPage}
-        />
       </Paper>
+      <PaginationCustom
+        className="product-wrapper__pagination"
+        count={dataProduct.meta.totalPages}
+        page={dataProduct.meta.currentPage}
+        onChange={handlePageChange}
+      />
     </div>
   );
 };

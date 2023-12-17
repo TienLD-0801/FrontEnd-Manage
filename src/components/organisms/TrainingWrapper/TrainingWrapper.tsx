@@ -1,4 +1,4 @@
-import { DataTrainingType } from '@/constants/constant';
+import { DataTrainingType } from '@/shared/constants/constant';
 import './TrainingWrapper.scss';
 
 interface TrainingWrapperProps {

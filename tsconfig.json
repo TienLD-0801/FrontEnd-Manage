@@ -27,5 +27,4 @@
   },
   "include": ["src","src/**/*.ts", "tests/**/*.ts"],
   "references": [{ "path": "./tsconfig.node.json" }]
-
 }

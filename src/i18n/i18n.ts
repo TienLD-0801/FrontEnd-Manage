@@ -4,7 +4,7 @@ import en from '@/i18n/en-US';
 import vn from '@/i18n/en-VN';
 import ch from '@/i18n/en-CH';
 import ja from '@/i18n/en-JA';
-import { store } from '@/store';
+import { store } from '@/stores';
 
 /* A way to import multiple language files to resources. */
 const resources = {

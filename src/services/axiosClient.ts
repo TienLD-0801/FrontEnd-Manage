@@ -1,8 +1,11 @@
 import axios, { AxiosError, AxiosInstance } from 'axios';
-import { store } from '@/store/index';
-import { LoginResponse, ParamsLogin, UserAll } from '@/api-type/login';
-import { updateUser } from '@/store/slices/UserSlice';
+import { store } from '@/stores/index';
+import { LoginResponse, ParamsLogin, UserAll } from '@/shared/types/api-type/login';
+import { updateUser } from '@/stores/slices/UserSlice';
 import _ from 'lodash';
+import { convertQueryParams } from '@/shared/utils/common';
+import { CategoriesAll } from '@/shared/types/api-type/category';
+import { ProductAll } from '@/shared/types/api-type/product';
 
 /** Setting timeout of axios */
 const AXIOS_TIMEOUT: number = 10000;
@@ -18,7 +21,7 @@ class AxiosClient {
       Accept: 'application/json',
       'Access-Control-Allow-Origin': '*',
       'Access-Control-Allow-Headers':
-        'Origin, X-Requested-With, Content-Type, Accept, Authorization',
+        'Origin, X-Requested-With, Content-Type, Accept',
     },
   };
 
@@ -37,7 +40,7 @@ class AxiosClient {
         const token = store.getState().user.token;
 
         if (token) {
-          config.headers.Authorization = `Bearer ${token}`;
+          config.headers['X-API-TOKEN'] = `Bearer ${token}`;
         }
         return config;
       },
@@ -73,8 +76,11 @@ class AxiosClient {
   }
 
   // api get all user
-  apiGetUsers() {
-    return this.axios.get<UserAll>('api/users', this.config);
+  apiGetUsers(params: Object) {
+    return this.axios.get<UserAll>(
+      `api/users${convertQueryParams(params)}`,
+      this.config,
+    );
   }
 
   // api create new user
@@ -93,8 +99,11 @@ class AxiosClient {
   }
 
   // api get all product
-  apiGetProduct() {
-    return this.axios.get('api/products', this.config);
+  apiGetProduct(params: Object) {
+    return this.axios.get<ProductAll>(
+      `api/products${convertQueryParams(params)}`,
+      this.config,
+    );
   }
 
   // api get create product
@@ -118,8 +127,11 @@ class AxiosClient {
   }
 
   // api get all category
-  apiGetCategory() {
-    return this.axios.get('api/categories', this.config);
+  apiGetCategory(params: Object) {
+    return this.axios.get<CategoriesAll>(
+      `api/categories${convertQueryParams(params)}`,
+      this.config,
+    );
   }
 
   // api update category

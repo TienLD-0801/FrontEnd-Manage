@@ -1,4 +1,4 @@
-import { MENU_LANGUAGE } from '@/constants/constant';
+import { MENU_LANGUAGE } from '@/shared/constants/constant';
 import { Menu, MenuItem } from '@mui/material';
 
 interface LanguageDropdownProps {
