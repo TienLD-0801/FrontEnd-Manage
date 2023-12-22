@@ -9,6 +9,6 @@ COPY package-lock.json /fronend-manage/package-lock.json
 RUN yarn install
 COPY . /fronend-manage
 
-EXPOSE 4000
+EXPOSE 4001
 
 CMD [ "yarn", "start" ]
