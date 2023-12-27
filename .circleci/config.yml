@@ -24,7 +24,7 @@ jobs:
       - attach_workspace:
           at: .
       - aws-cli/setup:
-          profile-name: default
+          profile_name: default
       # - run:
       #     name: Upload file to S3
       #     command: aws s3 sync ./dist/ s3://circle-ci-s3-deploy --delete
