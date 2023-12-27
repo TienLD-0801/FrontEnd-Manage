@@ -28,6 +28,7 @@ jobs:
       #     command: aws s3 sync ./dist/ s3://circle-ci-s3-deploy --delete
 workflows:
   frontend-manage-pipeline:
+    version: 2
     jobs:
       - build_project:
           filters:
