@@ -25,9 +25,9 @@ jobs:
           at: .
       - aws-cli/setup:
           profile_name: default
-      # - run:
-      #     name: Upload file to S3
-      #     command: aws s3 sync ./dist/ s3://circle-ci-s3-deploy --delete
+      - run:
+          name: Upload file to S3
+          command: aws s3 sync ./dist/ s3://shop-manage.xyz --delete
 workflows:
   frontend-manage-pipeline:
     jobs:
