@@ -10,22 +10,22 @@ jobs:
           name: Installing yarn
           command: yarn
       - run:
-          name: build project
+          name: Build source
           command: yarn build
       - persist_to_workspace:
           root: .
           paths:
             - .
-  # deploy_s3:
-  #   executor: aws-cli/default
-  #   steps:
-  #     - attach_workspace:
-  #         at: .
-  #     - aws-cli/setup:
-  #         profile-name: default
-  #     - run:
-  #         name: Upload file to S3
-  #         command: aws s3 sync ./dist/ s3://circle-ci-s3-deploy --delete
+  deploy_s3:
+    executor: aws-cli/default
+    steps:
+      - attach_workspace:
+          at: .
+      - aws-cli/setup:
+          profile-name: default
+      # - run:
+      #     name: Upload file to S3
+      #     command: aws s3 sync ./dist/ s3://circle-ci-s3-deploy --delete
 workflows:
   frontend-manage-pipeline:
     jobs:
@@ -34,3 +34,12 @@ workflows:
             branches:
               only:
                 - deployment-circleci
+      - deploy_s3:
+          requires:
+            - build_project
+          context: aws-context
+          filters:
+            branches:
+              only:
+                - deployment-circleci
+
