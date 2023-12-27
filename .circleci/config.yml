@@ -1,26 +1,35 @@
-# circleci config
-# version
 version: 2.1
-# orbs
-orbs:
-  node: circleci/node@5.1.1
 jobs:
-  set-up-node:
-    executor: node/default
+  build_project:
+    working_directory: ~/frontend-manage
+    docker:
+      - image: node:latest
     steps:
       - checkout
-      - node/install:
-          install-yarn: true
-          node-version: '18'
-      - run: |
-         yarn global add typescript
-         tsc && vite build
-      - node/run:
-          yarn-run: build
+      - run:
+          name: Installing yarn
+          command: yarn
+      - run:
+          name: build project
+          command: yarn build
+      - persist_to_workspace:
+          root: .
+          paths:
+            - .
+  # deploy_s3:
+  #   executor: aws-cli/default
+  #   steps:
+  #     - attach_workspace:
+  #         at: .
+  #     - aws-cli/setup:
+  #         profile-name: default
+  #     - run:
+  #         name: Upload file to S3
+  #         command: aws s3 sync ./dist/ s3://circle-ci-s3-deploy --delete
 workflows:
   frontend-manage-pipeline:
     jobs:
-      - set-up-node:
+      - build_project:
           filters:
             branches:
               only:
