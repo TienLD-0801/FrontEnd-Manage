@@ -17,7 +17,7 @@ export const ROUTE_PATH = {
   training: '/training',
 
   // Admin
-  login: '/admin-login',
+  login: '/admin-tienld',
   dashboard: '/admin-dashboard',
   category: '/admin-category',
   product: '/admin-product',
