@@ -12,7 +12,7 @@ jobs:
       - node/install:
           install-yarn: true
           node-version: '18'
-      - run: yarn run build
+      - run: yarn build
 workflows:
   frontend-manage-pipeline:
     jobs:
