@@ -27,7 +27,7 @@ export const ROUTE_PATH = {
 
 // Data header
 export const DATA_HEADER = [
-  { id: 1, name: 'HOME', routerName: '/admin-tienld' },
+  { id: 1, name: 'HOME', routerName: '/admin-login' },
   { id: 2, name: 'ABOUT', routerName: '/introduce' },
   { id: 3, name: 'PRICE', routerName: '/listprice' },
   { id: 4, name: 'TRAINING', routerName: '/training' },
