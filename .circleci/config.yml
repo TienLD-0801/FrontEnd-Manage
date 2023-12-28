@@ -37,11 +37,10 @@ workflows:
               only:
                 - deployment-circleci
       - deploy_s3:
+          context: s3-context
           requires:
             - build_project
-            - hold:
-                type: approval
-          context: s3-context
+            - hold
           filters:
             branches:
               only:
