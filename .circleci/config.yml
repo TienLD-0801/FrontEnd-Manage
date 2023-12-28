@@ -39,7 +39,8 @@ workflows:
       - deploy_s3:
           requires:
             - build_project
-            - hold
+          - hold:
+              type: approval
           context: s3-context
           filters:
             branches:
