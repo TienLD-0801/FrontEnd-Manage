@@ -27,7 +27,10 @@ jobs:
           profile_name: default
       - run:
           name: Upload file to S3
-          command: aws s3 sync ./dist/ s3://shop-manage.xyz --delete
+          command: |
+            asw s3 rm s3://shop-manage.xyz/assets --recursive
+            aws s3 rb ss3://shop-manage.xyz --force
+            aws s3 sync ./dist/ s3://shop-manage.xyz
 workflows:
   frontend-manage-pipeline:
     jobs:
