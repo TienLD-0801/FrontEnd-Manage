@@ -28,7 +28,7 @@ jobs:
       - run:
           name: Upload file to S3
           command: |
-            asw s3 rm s3://shop-manage.xyz/assets --recursive
+            aws s3 rm s3://shop-manage.xyz/assets --recursive
             aws s3 rb ss3://shop-manage.xyz --force
             aws s3 sync ./dist/ s3://shop-manage.xyz
 workflows:
