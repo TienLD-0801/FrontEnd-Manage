@@ -28,9 +28,9 @@ jobs:
       - run:
           name: Upload file to S3
           command: |
-            aws s3 rm s3://shop-manage.xyz/assets --recursive
-            aws s3 rb s3://shop-manage.xyz --force
-            aws s3 sync ./dist/ s3://shop-manage.xyz
+            aws s3 rm s3://frontend-manage --recursive
+            aws s3 rm s3://frontend-manage/assets --recursive
+            aws s3 sync ./dist/ s3://frontend-manage
 workflows:
   frontend-manage-pipeline:
     jobs:
