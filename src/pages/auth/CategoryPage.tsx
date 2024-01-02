@@ -74,6 +74,7 @@ const CategoryPage = () => {
 
   // handle call api product and category
   useEffect(() => {
+    if(!paramPagination.page) return;
     getCategories();
   }, [paramPagination]);
 
