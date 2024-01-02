@@ -28,6 +28,5 @@ export const DATA_DIALOG_EDIT_CATEGORY: DialogEditCategoryType[] = [
   },
 ];
 
-export const PAGE_DISABLE_CHANGE = 1;
 export const CATEGORY_PAGE = 1;
 export const CATEGORY_LIMIT_PAGE = 5;

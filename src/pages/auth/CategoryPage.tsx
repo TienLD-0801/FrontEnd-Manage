@@ -198,7 +198,7 @@ const CategoryPage = () => {
   const handleChangePageCategory = (_event: any, page: number) => {
     if (dataCategory.meta.currentPage === page) return;
     setParamPagination({
-      page: page,
+      page: page ? page : CATEGORY_PAGE,
       limit: CATEGORY_LIMIT_PAGE,
     });
   };

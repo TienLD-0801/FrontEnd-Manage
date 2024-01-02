@@ -22,6 +22,7 @@ import {
   validationCreateUserSchema,
   validationEditUserSchema,
 } from '@/shared/validations/auth-validation';
+import { USER_LIMIT_PAGE, USER_PAGE } from '@/shared/constants/user';
 
 const UserPage = () => {
   const preloader = useContext(LoadingContext);
@@ -42,8 +43,8 @@ const UserPage = () => {
     page: number;
     limit: number;
   }>({
-    page: 1,
-    limit: 20,
+    page: USER_PAGE,
+    limit: USER_LIMIT_PAGE,
   });
 
   // validation create user hook
@@ -79,7 +80,7 @@ const UserPage = () => {
   // get all user
   useEffect(() => {
     getUsers();
-  }, [paramPagination.page]);
+  }, [paramPagination]);
 
   // handle page previous
   useEffect(() => {
@@ -184,8 +185,8 @@ const UserPage = () => {
   const handleChangePageUser = (_event: any, page: number) => {
     if (dataUsers.meta.currentPage === page) return;
     setParamPagination({
-      page: page,
-      limit: 20,
+      page: page ? page : USER_PAGE,
+      limit: USER_LIMIT_PAGE,
     });
   };
 

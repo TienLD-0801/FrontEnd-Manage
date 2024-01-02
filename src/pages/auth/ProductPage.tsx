@@ -24,7 +24,10 @@ import {
   ValidationCreateProductType,
   ValidationEditProductType,
 } from '@/shared/validations/type-formik/product';
-import { CATEGORY_LIMIT_PAGE, CATEGORY_PAGE } from '@/shared/constants/category';
+import {
+  CATEGORY_LIMIT_PAGE,
+  CATEGORY_PAGE,
+} from '@/shared/constants/category';
 import { DATA_INITIAL } from '@/shared/constants/constant';
 
 const ProductPage = () => {
@@ -227,7 +230,7 @@ const ProductPage = () => {
   const handleChangePageProduct = (_event: any, page: number) => {
     if (dataProduct.meta.currentPage === page) return;
     setParamPaginationProduct({
-      page: page,
+      page: page ? page : PRODUCT_PAGE,
       limit: PRODUCT_LIMIT_PAGE,
     });
   };
