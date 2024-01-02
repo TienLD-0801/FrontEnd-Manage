@@ -16,7 +16,7 @@ jobs:
           command: |
              touch .env
              ls
-             echo 'API_URL=tienld' >>.env
+             echo "API_URL=tienld" >>.env
              cat > .env
       # - run:
       #     name: Build source
