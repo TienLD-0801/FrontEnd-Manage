@@ -14,7 +14,8 @@ jobs:
       - run:
           name: Create .env
           command: |
-             cd frontend-manage
+             ls
+             cd frontend-manage/
              touch .env
              echo 'API_URL=tienld' >>.env
              cat > .env
