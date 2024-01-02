@@ -14,15 +14,16 @@ jobs:
       - run:
           name: Create .env
           command: |
-             sudo mkdir -m 0755 -p .env
-             cat .env
-      - run:
-          name: Build source
-          command: yarn build
-      - persist_to_workspace:
-          root: .
-          paths:
-            - .
+             touch .env
+             echo 'API_URL=tienld' >>.env
+             cat > .env
+      # - run:
+      #     name: Build source
+      #     command: yarn build
+      # - persist_to_workspace:
+      #     root: .
+      #     paths:
+      #       - .
   # deploy_s3:
   #   executor: aws-cli/default
   #   steps:
