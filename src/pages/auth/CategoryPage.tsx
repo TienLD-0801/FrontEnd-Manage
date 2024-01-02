@@ -2,7 +2,10 @@ import { useContext, useEffect, useState } from 'react';
 import _ from 'lodash';
 import API from '@/services/axiosClient';
 import { Container } from '@mui/material';
-import { CategoriesType, CategoriesItem } from '@/shared/types/api-type/category';
+import {
+  CategoriesType,
+  CategoriesItem,
+} from '@/shared/types/api-type/category';
 import { LoadingContext } from '@/context/LoadingContext';
 import { AlertDialogContext } from '@/context/AlertDialogContext';
 import DashboardWrapper from '@/components/admin/organisms/DashboardWrapper/DashboardWrapper';
@@ -74,9 +77,8 @@ const CategoryPage = () => {
 
   // handle call api product and category
   useEffect(() => {
-    if(!paramPagination.page) return;
     getCategories();
-  }, [paramPagination]);
+  }, [paramPagination.page]);
 
   // handle page previous
   useEffect(() => {

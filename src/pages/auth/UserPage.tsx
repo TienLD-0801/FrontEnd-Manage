@@ -78,9 +78,8 @@ const UserPage = () => {
 
   // get all user
   useEffect(() => {
-    if (!paramPagination.page) return;
     getUsers();
-  }, [paramPagination]);
+  }, [paramPagination.page]);
 
   // handle page previous
   useEffect(() => {
