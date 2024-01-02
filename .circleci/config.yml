@@ -14,10 +14,8 @@ jobs:
       - run:
           name: Create .env
           command: |
-             touch .env
-             ls
              echo "API_URL=tienld" >>.env
-             cat > .env
+             cat .env
       # - run:
       #     name: Build source
       #     command: yarn build
