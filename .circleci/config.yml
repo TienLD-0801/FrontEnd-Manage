@@ -16,27 +16,26 @@ jobs:
           command: |
              echo "LOCAL=$LOCAL" >>.env
              echo "VITE_API_UR=$VITE_API_URL" >>.env
-             cat .env
-      # - run:
-      #     name: Build source
-      #     command: yarn build
+      - run:
+          name: Build source
+          command: yarn build
       - persist_to_workspace:
           root: .
           paths:
             - .
-  # deploy_s3:
-  #   executor: aws-cli/default
-  #   steps:
-  #     - attach_workspace:
-  #         at: .
-  #     - aws-cli/setup:
-  #         profile_name: default
-  #     - run:
-  #         name: Upload file to S3
-  #         command: |
-  #           aws s3 rm s3://frontend-manage --recursive
-  #           aws s3 rm s3://frontend-manage/assets --recursive
-  #           aws s3 sync ./dist/ s3://frontend-manage
+  deploy_s3:
+    executor: aws-cli/default
+    steps:
+      - attach_workspace:
+          at: .
+      - aws-cli/setup:
+          profile_name: default
+      - run:
+          name: Upload file to S3
+          command: |
+            aws s3 rm s3://frontend-manage --recursive
+            aws s3 rm s3://frontend-manage/assets --recursive
+            aws s3 sync ./dist/ s3://frontend-manage
 workflows:
   frontend-manage-pipeline:
     jobs:
@@ -55,13 +54,13 @@ workflows:
               branches:
                 only:
                   - deployment-circleci
-      # - deploy_s3:
-      #     context: s3-context
-      #     requires:
-      #       - build_project
-      #       - hold
-      #     filters:
-      #       branches:
-      #         only:
-      #           - deployment-circleci
+      - deploy_s3:
+          context: s3-context
+          requires:
+            - build_project
+            - hold
+          filters:
+            branches:
+              only:
+                - deployment-circleci
 
