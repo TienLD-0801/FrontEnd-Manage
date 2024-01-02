@@ -6,8 +6,6 @@ jobs:
     working_directory: ~/frontend-manage
     docker:
       - image: node:latest
-    context:
-      - frontend-env
     steps:
       - checkout
       - run:
@@ -43,6 +41,8 @@ workflows:
   frontend-manage-pipeline:
     jobs:
       - build_project:
+          context:
+            - frontend-env
           filters:
             branches:
               only:
