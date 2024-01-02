@@ -6,6 +6,8 @@ jobs:
     working_directory: ~/frontend-manage
     docker:
       - image: node:latest
+    context:
+      - frontend-env
     steps:
       - checkout
       - run:
@@ -14,7 +16,8 @@ jobs:
       - run:
           name: Create .env
           command: |
-             echo "API_URL=tienld" >>.env
+             echo "LOCAL=$LOCAL" >>.env
+             echo "VITE_API_UR=$VITE_API_URL" >>.env
              cat .env
       # - run:
       #     name: Build source
