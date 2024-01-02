@@ -78,6 +78,7 @@ const UserPage = () => {
 
   // get all user
   useEffect(() => {
+    if (!paramPagination.page) return;
     getUsers();
   }, [paramPagination]);
 
