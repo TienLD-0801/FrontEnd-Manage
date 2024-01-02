@@ -12,7 +12,7 @@ jobs:
           name: Installing yarn
           command: yarn
       - run:
-          name: Create .env
+          name: Config environment variable
           command: |
              echo "LOCAL=$LOCAL" >>.env
              echo "VITE_API_UR=$VITE_API_URL" >>.env
